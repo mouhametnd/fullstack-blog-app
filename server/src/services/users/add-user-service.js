@@ -1,7 +1,7 @@
 const { userShape } = require('../../shapes/user-shape');
 const { getCollection } = require('../../utils/get-collection');
 
-const addNewUserService = async userProps => {
+const addUserService = async userProps => {
   try {
     const usersCollection = getCollection('users');
     const newUSer = await userShape({ ...userProps });
@@ -13,4 +13,4 @@ const addNewUserService = async userProps => {
   }
 };
 
-module.exports = { addNewUserService };
+module.exports = { addUserService };

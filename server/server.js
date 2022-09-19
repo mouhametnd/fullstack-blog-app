@@ -2,10 +2,10 @@ const express = require('express');
 const dotenv = require('dotenv');
 const app = express();
 const { CORSMiddleware } = require('./src/middlewares/cors-middleware');
-const { connectToDb, getDb } = require('./src/db/db');
-const { Collection } = require('mongodb');
+const { connectToDb } = require('./src/db/db');
 const { signInRoute } = require('./src/routes/sign-in-route');
-const { logInRoute } = require('./src/routes/log-in/log-in-route');
+const { logInRoute } = require('./src/routes/log-in-route');
+const { blogsRoute } = require('./src/routes/blogs');
 dotenv.config({
   path: '.env',
 });
@@ -15,5 +15,6 @@ app.use(express.urlencoded({ extended: true }));
 app.use(CORSMiddleware);
 app.use('/sign-in', signInRoute)
 app.use('/log-in', logInRoute)
+app.use('/blogs', blogsRoute)
 
 connectToDb(() => app.listen(process.env.PORT));

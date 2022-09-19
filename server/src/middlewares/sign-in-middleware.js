@@ -1,4 +1,4 @@
-const { signInDTOValidator } = require('../dto/sign-in-validator.js');
+const { signInDTOValidator } = require('../dto/sign-in-dto-validator.js');
 const { getCollection } = require('../utils/get-collection.js');
 
 const signInMiddleware = async (req, res, next) => {

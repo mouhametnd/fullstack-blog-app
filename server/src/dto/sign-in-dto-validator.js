@@ -23,4 +23,3 @@ const signInDTOValidator = ajv.compile(signInSchema);
 module.exports = {
   signInDTOValidator,
 };
-// export { signInDTOValidator };

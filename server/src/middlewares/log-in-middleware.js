@@ -1,5 +1,5 @@
 const bcrypt = require('bcrypt');
-const { logInDTOValidator } = require('../dto/log-in-validator');
+const { logInDTOValidator } = require('../dto/log-in-dto-validator');
 const { getCollection } = require('../utils/get-collection');
 const { wrongCredentialsSender } = require('../utils/wrong-credentials-sender');
 
