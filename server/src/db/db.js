@@ -2,7 +2,9 @@ const { MongoClient } = require('mongodb');
 let db = null;
 const connectToDb = async cb => {
   try {
-    await MongoClient.connect(process.env.MONGODB_URL);
+    const connection = await MongoClient.connect(process.env.MONGODB_URL);
+    db = connection.db()
+// db.createCollection('users')
     cb();
   } catch (err) {
     console.log(err);

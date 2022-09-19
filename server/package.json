@@ -14,8 +14,13 @@
     "ajv": "^8.11.0",
     "ajv-errors": "^3.0.0",
     "ajv-formats": "^2.1.1",
+    "bcrypt": "^5.0.1",
+    "body-parser": "^1.20.0",
     "express": "^4.18.1",
-    "mongodb": "^4.9.1"
+    "express-fileupload": "^1.4.0",
+    "jose": "^4.9.3",
+    "mongodb": "^4.9.1",
+    "multer": "^1.4.4"
   },
   "devDependencies": {
     "dotenv": "^16.0.2"
