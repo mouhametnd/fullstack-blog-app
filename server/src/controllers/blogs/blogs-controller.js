@@ -1,9 +1,9 @@
 const { getCollection } = require('../../utils/get-collection');
-
+// a service job
 const blogsController = async (req, res) => {
   const blogsCollection = getCollection('blogs');
   try {
-    const result = await blogsCollection.find({}, { userCreator: 0, likes: 0, disLikes: 0 }).toArray();
+    const result = await blogsCollection.find({}).toArray();
     res.json({ result });
   } catch (err) {
     res.status(406);

@@ -1,7 +1,7 @@
 const bcrypt = require('bcrypt');
-const { logInDTOValidator } = require('../dto/log-in-dto-validator');
-const { getCollection } = require('../utils/get-collection');
-const { wrongCredentialsSender } = require('../utils/wrong-credentials-sender');
+const { logInDTOValidator } = require('../../dto/auth/log-in-dto-validator');
+const { getCollection } = require('../../utils/get-collection');
+const { wrongCredentialsSender } = require('../../utils/wrong-credentials-sender');
 
 const logInMiddleware = async (req, res, next) => {
   const { body } = req;

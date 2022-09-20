@@ -1,5 +1,5 @@
-const { signInDTOValidator } = require('../dto/sign-in-dto-validator.js');
-const { getCollection } = require('../utils/get-collection.js');
+const { signInDTOValidator } = require('../../dto/auth/sign-in-dto-validator.js');
+const { getCollection } = require('../../utils/get-collection.js');
 
 const signInMiddleware = async (req, res, next) => {
   if (!signInDTOValidator(req.body)) {

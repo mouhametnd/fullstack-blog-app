@@ -1,4 +1,4 @@
-const { blogDTOValidator } = require('../../dto/blog-dto-validator');
+const { blogDTOValidator } = require('../../dto/blogs/blog-dto-validator');
 
 const blogDTOMiddleware = (req, res, next) => {
   if (!blogDTOValidator(req.body)) {

@@ -5,8 +5,7 @@ const blogShape = ({ title, description, userCreator }) => {
     title,
     description,
     _id: ObjectId(),
-    likes: 0,
-    dislikes: 0,
+    upvotes: 0,
     userCreator,
     lastUpdate: new Date(),
   };

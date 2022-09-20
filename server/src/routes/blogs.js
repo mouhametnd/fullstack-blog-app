@@ -6,7 +6,8 @@ const { delBlogController } = require('../controllers/blogs/del-blog-controller'
 const { updateBlogController } = require('../controllers/blogs/update-blog-controller');
 const { blogDTOMiddleware } = require('../middlewares/blogs/blog-dto-middleware');
 const { checkBlogCreatorMiddleware } = require('../middlewares/blogs/check-blog-creator-middleware');
-const { jwtVerifierMiddleware } = require('../middlewares/jwt-verifier-middleware');
+const { jwtVerifierMiddleware } = require('../middlewares/auth/jwt-verifier-middleware');
+const { usernameValidatorMiddleware } = require('../middlewares/auth/username-validator-middleware');
 
 const blogsRoute = Router();
 
@@ -15,6 +16,7 @@ blogsRoute.get('/', blogsController);
 blogsRoute.get('/:blogId', blogController);
 
 blogsRoute.use(jwtVerifierMiddleware);
+blogsRoute.use(usernameValidatorMiddleware);
 blogsRoute.use(['/add', '/update/:blogId'], blogDTOMiddleware);
 blogsRoute.use(['/del/:blogId', '/update/:blogId'], checkBlogCreatorMiddleware);
 

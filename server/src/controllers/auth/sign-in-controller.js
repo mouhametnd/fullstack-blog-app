@@ -1,4 +1,4 @@
-const { addUserService } = require('../../services/users/add-user-service');
+const { addUserService } = require('../../services/user/add-user-service');
 const { createUserToken } = require('../../utils/create-user-token');
 
 const signInController = async (req, res) => {

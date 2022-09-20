@@ -1,6 +1,6 @@
 const { Router } = require('express');
 const { signInController } = require('../controllers/auth/sign-in-controller');
-const { signInMiddleware } = require('../middlewares/sign-in-middleware');
+const { signInMiddleware } = require('../middlewares/auth/sign-in-middleware');
 
 const signInRoute = Router();
 signInRoute.use(signInMiddleware);
