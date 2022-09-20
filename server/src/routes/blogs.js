@@ -3,7 +3,8 @@ const { addBlogController } = require('../controllers/blogs/add-blog-controller'
 const { blogController } = require('../controllers/blogs/blog-controller');
 const { blogsController } = require('../controllers/blogs/blogs-controller');
 const { delBlogController } = require('../controllers/blogs/del-blog-controller');
-const { addBlogDTOMiddleware } = require('../middlewares/blogs/add-blog-dto-middleware');
+const { updateBlogController } = require('../controllers/blogs/update-blog-controller');
+const { blogDTOMiddleware } = require('../middlewares/blogs/blog-dto-middleware');
 const { checkBlogCreatorMiddleware } = require('../middlewares/blogs/check-blog-creator-middleware');
 const { jwtVerifierMiddleware } = require('../middlewares/jwt-verifier-middleware');
 
@@ -14,10 +15,12 @@ blogsRoute.get('/', blogsController);
 blogsRoute.get('/:blogId', blogController);
 
 blogsRoute.use(jwtVerifierMiddleware);
-blogsRoute.post('/add', addBlogDTOMiddleware, addBlogController);
+blogsRoute.use(['/add', '/update/:blogId'], blogDTOMiddleware);
+blogsRoute.use(['/del/:blogId', '/update/:blogId'], checkBlogCreatorMiddleware);
 
-
-blogsRoute.delete('/del/:blogId', checkBlogCreatorMiddleware, delBlogController);
+blogsRoute.post('/add', addBlogController);
+blogsRoute.delete('/del/:blogId', delBlogController);
+blogsRoute.patch('/update/:blogId', updateBlogController);
 
 module.exports = {
   blogsRoute,

@@ -5,7 +5,9 @@ const delBlogController = async (req, res) => {
   const { username } = res.locals.verified.payload;
   const result = await delBlogService(blogId, username);
 
-  res.json(result)
+  if (result.error) res.status(404);
+
+  res.json(result);
 };
 
 module.exports = {

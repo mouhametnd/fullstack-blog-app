@@ -4,7 +4,7 @@ const addErrors = require('ajv-errors');
 const ajv = new Ajv({ allErrors: true });
 addErrors(ajv);
 
-const addBlogSchema = Type.Object({
+const blogSchema = Type.Object({
     title: Type.String({
       minLength: 3,
     }),
@@ -14,8 +14,8 @@ const addBlogSchema = Type.Object({
     }),
 });
 
-const addBlogDTOValidator = ajv.compile(addBlogSchema);
+const blogDTOValidator = ajv.compile(blogSchema);
 
 module.exports = {
-  addBlogDTOValidator,
+  blogDTOValidator,
 };
