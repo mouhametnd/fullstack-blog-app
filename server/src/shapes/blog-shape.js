@@ -5,12 +5,12 @@ const blogShape = ({ title, description, userCreator }) => {
     title,
     description,
     _id: ObjectId(),
-    upvotes: 0,
+    votes: { total: 0, likedUsers: [] },
     userCreator,
     lastUpdate: new Date(),
   };
 };
 
 module.exports = {
-  blogShape
-  }
+  blogShape,
+};

@@ -10,16 +10,15 @@ const { updateUsernameMiddleware } = require('../middlewares/user/update-usernam
 
 const userRoute = Router();
 
-userRoute.use(jwtVerifierMiddleware)
-userRoute.use(usernameValidatorMiddleware)
+userRoute.use(jwtVerifierMiddleware);
+userRoute.use(usernameValidatorMiddleware);
 
-userRoute.get('/',userController )
-userRoute.get('/blogs',userBlogsController )
-userRoute.post('/update/name', updateUserNameMiddleware, updateUserNameController)
+userRoute.get('/', userController);
+userRoute.get('/blogs', userBlogsController);
+userRoute.post('/update/name', updateUserNameMiddleware, updateUserNameController);
 
-userRoute.post('/update/username', updateUsernameMiddleware, updateUsernameController)
-
+userRoute.post('/update/username', updateUsernameMiddleware, updateUsernameController);
 
 module.exports = {
-  userRoute
-}
+  userRoute,
+};
