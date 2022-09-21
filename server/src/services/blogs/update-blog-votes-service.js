@@ -17,7 +17,6 @@ const updateBlogVotesService = async (blog, userId) => {
     const { modifiedCount } = await blogsCollection.updateOne({ _id }, { $set: { votes } });
     
     if (!modifiedCount) throw new Error();
-
     return { result: 'blog votes updated' };
   } catch (error) {
     return { error: "server error while updating the blogs" };

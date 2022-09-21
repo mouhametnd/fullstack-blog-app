@@ -7,7 +7,6 @@ const { jwtVerifierMiddleware } = require('../middlewares/auth/jwt-verifier-midd
 const { usernameValidatorMiddleware } = require('../middlewares/auth/username-validator-middleware');
 const { updateUserNameMiddleware } = require('../middlewares/user/update-user-name-middleware');
 const { updateUsernameMiddleware } = require('../middlewares/user/update-username-middleware');
-
 const userRoute = Router();
 
 userRoute.use(jwtVerifierMiddleware);
@@ -15,9 +14,8 @@ userRoute.use(usernameValidatorMiddleware);
 
 userRoute.get('/', getUserController);
 userRoute.get('/blogs', getUserBlogsController);
-userRoute.post('/update/name', updateUserNameMiddleware, updateUserNameController);
-
-userRoute.post('/update/username', updateUsernameMiddleware, updateUsernameController);
+userRoute.patch('/update/name', updateUserNameMiddleware, updateUserNameController);
+userRoute.patch('/update/username', updateUsernameMiddleware, updateUsernameController);
 
 module.exports = {
   userRoute,

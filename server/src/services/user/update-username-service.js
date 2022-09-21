@@ -14,7 +14,6 @@ const updateUsernameService = async ({ newUsername, username }) => {
     );
 
     if (modifiedCount) return { result: 'username updated successfully' };
-
     throw new Error();
   } catch (error) {
     return { error: 'server error changing the username' };

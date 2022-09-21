@@ -4,7 +4,6 @@ const { getQueryBlogs } = require('../../utils/get-query-blogs');
 
 const getUserService = async (username, maxNumOfBlogs = 3) => {
   try {
-
     const usersCollection = getCollection('users');
     const blogsCollection = getCollection('blogs');
     const [user] = await usersCollection.find({ username }).project(userProjectedProps).toArray();

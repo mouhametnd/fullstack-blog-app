@@ -6,7 +6,7 @@ function App() {
 
   useEffect(() => {
     (async () => {
-      const req = await fetch('http://localhost:3000/images');
+      const req = await fetch('http://localhost:3000/api/blogs?perPage=8');
       const res = await req.json();
       console.log('respone => ', res);
 

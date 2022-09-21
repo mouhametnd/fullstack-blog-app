@@ -11,7 +11,6 @@ const updateBlogsUserCreatorService = async ({ username, newUsername, newName })
     else updateObj.value = { $set: { 'userCreator.name': newName } };
 
     const { filter, value } = updateObj;
-
     await blogsCollection.updateMany(filter, value);
     return { result: 'user blogs updated successfully' };
   } catch (error) {

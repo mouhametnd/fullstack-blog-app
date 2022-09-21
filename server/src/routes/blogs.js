@@ -10,13 +10,15 @@ const { jwtVerifierMiddleware } = require('../middlewares/auth/jwt-verifier-midd
 const { usernameValidatorMiddleware } = require('../middlewares/auth/username-validator-middleware');
 const { updateBlogVotesMiddleware } = require('../middlewares/blogs/update-blog-votes-middleware');
 const { updateBlogVotesController } = require('../controllers/blogs/update-blog-votes-controller');
-
+const { CORSPrivateEndpointsMiddleware } = require('../middlewares/auth/cors-private-endpoints-middleware');
+const { CORSPublicEndpointsMiddleware } = require('../middlewares/auth/cors-public-endpoints-middleware');
 const blogsRoute = Router();
 
-// make it open to anyone
+blogsRoute.use(['/', '/:blogId'], CORSPublicEndpointsMiddleware);
 blogsRoute.get('/', getBlogsController);
 blogsRoute.get('/:blogId', getBlogController);
 
+blogsRoute.use(CORSPrivateEndpointsMiddleware);
 blogsRoute.use(jwtVerifierMiddleware);
 blogsRoute.use(usernameValidatorMiddleware);
 blogsRoute.use(['/add', '/update/:blogId'], blogDTOMiddleware);
@@ -25,8 +27,7 @@ blogsRoute.use(['/del/:blogId', '/update/:blogId'], checkBlogCreatorMiddleware);
 blogsRoute.post('/add', addgetBlogController);
 blogsRoute.delete('/del/:blogId', delgetBlogController);
 blogsRoute.patch('/update/:blogId', updateBlogDetailsController);
-
-blogsRoute.patch('/votes/:blogId', updateBlogVotesMiddleware, updateBlogVotesController)
+blogsRoute.patch('/votes/:blogId', updateBlogVotesMiddleware, updateBlogVotesController);
 
 module.exports = {
   blogsRoute,

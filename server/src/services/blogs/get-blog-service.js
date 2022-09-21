@@ -6,7 +6,6 @@ const getBlogService = async _id => {
     const result = await blogsCollection.findOne({ _id });
 
     if (!blogsCollection) throw new Error();
-
     return { result };
   } catch (error) {
     return { error };
