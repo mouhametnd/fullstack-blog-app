@@ -7,18 +7,15 @@ const updateBlogsUserCreatorService = async ({ username, newUsername, newName })
       filter: { 'userCreator.username': username },
     };
 
-    if (newUsername) {
-      updateObj.value = { $set: { 'userCreator.username': newUsername } };
-    } else {
-      updateObj.value = { $set: { 'userCreator.name': newName } };
-    }
+    if (newUsername) updateObj.value = { $set: { 'userCreator.username': newUsername } };
+    else updateObj.value = { $set: { 'userCreator.name': newName } };
 
     const { filter, value } = updateObj;
 
     await blogsCollection.updateMany(filter, value);
     return { result: 'user blogs updated successfully' };
   } catch (error) {
-    return { error: 'Error updating user blogs' };
+    return { error: 'server error while updating the user blogs' };
   }
 };
 

@@ -1,22 +1,20 @@
-const { ObjectId } = require('mongodb');
 const { getCollection } = require('../../utils/get-collection');
 
-const delBlogService = async (blogId, username) => {
+const delBlogService = async (_id, username) => {
   try {
-    const _id = ObjectId(blogId);
     const blogsCollection = getCollection('blogs');
-    const { deletedCount } = await blogsCollection.deleteOne({ _id });
-
-    if (!deletedCount) return { error: 'No blog to delete found' };
-
     const usersCollection = getCollection('users');
-    await usersCollection.updateOne({ username }, { $pull: { blogs: _id } });
+    const [{ deletedCount }] = await Promise.all([
+      blogsCollection.deleteOne({ _id }),
+      usersCollection.updateOne({ username }, { $pull: { blogs: _id } }),
+    ]);
+    if (!deletedCount) throw new Error();
 
-    return { result: 'Blog deleted Successfully' };
+    return { result: 'blog deleted Successfully' };
   } catch (err) {
-    return { error: 'Error fetching blog' };
+    return { error: 'server error while deleting the blog' };
   }
 };
 module.exports = {
-  delBlogService
-}
+  delBlogService,
+};

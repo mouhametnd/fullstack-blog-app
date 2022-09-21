@@ -1,14 +1,11 @@
 const { updateBlogVotesService } = require('../../services/blogs/update-blog-votes-service');
 
-const updateBlogVotesController = async (req, res) => {
+const updateBlogVotesController = async (_, res) => {
   const { blog, user } = res.locals;
-  const { result, error } = await updateBlogVotesService(blog, user._id);
+  const result = await updateBlogVotesService(blog, user._id.toString());
 
-  if (error) {
-    res.status(500);
-    res.json({ error });
-  }
-  res.json({ result });
+  if (result.error) res.status(500);
+  res.json(result);
 };
 
 module.exports = {

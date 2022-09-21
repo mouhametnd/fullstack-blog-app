@@ -6,23 +6,17 @@ const updateUsernameController = async (req, res) => {
   const { newUsername } = req.body;
   const { username, name } = res.locals.verified.payload;
 
-  const updateUsername = await updateUsernameService({ newUsername, username });
+  const [usernameResult, blogsUserCreatorResult, newUserToken] = await Promise.all([
+    updateUsernameService({ newUsername, username }),
+    updateBlogsUserCreatorService({ newUsername, username }),
+    createUserToken(newUsername, name),
+  ]);
 
-  if (updateUsername.error) {
+  if (usernameResult.error || blogsUserCreatorResult.error) {
     res.status(503);
-    res.json({ error:updateUsername.error });
+    res.json({ error: 'server error while updating the user name' });
     return;
   }
-
-  const updateBlogsUserCreator = await updateBlogsUserCreatorService({ newUsername, username });
-
-  if (updateBlogsUserCreator.error) {
-    res.status(503);
-    res.json({ error:updateBlogsUserCreator.error });
-    return;
-  }
-
-  const newUserToken = await createUserToken(newUsername, name);
 
   res.json({ result: { newUserToken } });
 };

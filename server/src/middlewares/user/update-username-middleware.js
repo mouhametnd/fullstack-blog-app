@@ -1,26 +1,36 @@
 const { usernameDTOValidator } = require('../../dto/user/username-dto-validator');
-const { wrongDTOSender } = require('../../utils/wrong-dto-sender');
+const { getCollection } = require('../../utils/get-collection');
+const { invalidDTOSender } = require('../../utils/invalid-dto-sender');
 
-const updateUsernameMiddleware = (req, res, next) => {
-  if (!usernameDTOValidator(req.body)) {
-    wrongDTOSender(res);
-    return;
+const updateUsernameMiddleware = async (req, res, next) => {
+  try {
+    if (!usernameDTOValidator(req.body)) return invalidDTOSender(res);
+
+    const { username } = res.locals.verified.payload;
+    const { newUsername } = req.body;
+
+    if (username === newUsername) {
+      res.status(400);
+      res.json({ error: 'username should be different' });
+      return;
+    }
+
+    const usersCollection = getCollection('users');
+    const hasRegisteredUser = await usersCollection.findOne({ username: newUsername });
+
+    if (hasRegisteredUser) {
+      res.status(406);
+      res.json({ error: 'username is not available' });
+      return;
+    }
+
+    next();
+  } catch (error) {
+    res.status(500);
+    res.json({ error: 'server error while updating the username' });
   }
-
-  const { username } = res.locals.verified.payload;
-
-  if (username === req.body.newUsername) {
-    // wrongDTOSender(res);
-    // todo error sended function with status code and message
-    res.status(400)
-    res.json({error: "username should be different"})
-    return;
-  }
-
-
-  next();
 };
 
 module.exports = {
-  updateUsernameMiddleware
-}
+  updateUsernameMiddleware,
+};

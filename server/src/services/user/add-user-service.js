@@ -5,11 +5,11 @@ const addUserService = async userProps => {
   try {
     const usersCollection = getCollection('users');
     const newUSer = await userShape({ ...userProps });
-    const result = await usersCollection.insertOne(newUSer);
+    await usersCollection.insertOne(newUSer);
 
-    return { result };
-  } catch (err) {
-    return { error: 'Error adding new user' };
+    return { result: 'user signed successfully' };
+  } catch (error) {
+    return { error: 'server error signing the user' };
   }
 };
 

@@ -1,14 +1,8 @@
 const { getCollection } = require('../../utils/get-collection');
 
 const updateUsernameService = async ({ newUsername, username }) => {
-  // already check the username is different
-  // generetate a new token, update user if not taked
-
   try {
     const usersCollection = getCollection('users');
-    const hasRegistedUser = await usersCollection.findOne({ username: newUsername });
-    if (hasRegistedUser) throw 'username is not available';
-
     const { modifiedCount } = await usersCollection.updateOne(
       { username },
       {
@@ -21,9 +15,9 @@ const updateUsernameService = async ({ newUsername, username }) => {
 
     if (modifiedCount) return { result: 'username updated successfully' };
 
-    throw 'Error changing the username';
+    throw new Error();
   } catch (error) {
-    return { error };
+    return { error: 'server error changing the username' };
   }
 };
 

@@ -1,4 +1,5 @@
 const { jwtVerify } = require('jose');
+const { unauthorizedSender } = require('../../utils/unauthorized-sender');
 
 const jwtVerifierMiddleware = async (req, res, next) => {
   try {
@@ -9,9 +10,7 @@ const jwtVerifierMiddleware = async (req, res, next) => {
     res.locals.verified = verified;
     next()
   } catch (err) {
-    res.status(401);
-    res.json({ error: 'Unauthorized' });
-    return false;
+    unauthorizedSender(res)
   }
 };
 

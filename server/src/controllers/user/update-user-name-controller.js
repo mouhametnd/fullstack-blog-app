@@ -1,31 +1,23 @@
-const { updateBlogsUserCreatorService } = require("../../services/blogs/update-blogs-user-creator-service");
-const { updateUserNameService } = require("../../services/user/update-user-name-service");
+const { updateBlogsUserCreatorService } = require('../../services/blogs/update-blogs-user-creator-service');
+const { updateUserNameService } = require('../../services/user/update-user-name-service');
 
 const updateUserNameController = async (req, res) => {
   const { newName } = req.body;
-  const {username}= res.locals.verified.payload
+  const { username } = res.locals.verified.payload;
 
-  const {error, result} = await updateUserNameService({newName, username})
+  const [userNameResult, blogUserCreatorResult] = await Promise.all([
+    updateUserNameService({ newName, username }),
+    updateBlogsUserCreatorService({ newName, username }),
+  ]);
 
-  if(error){
-    res.status(400)
-    res.json({error})
-    return
-  }
-
-  const updateBlogsUserCreator = await updateBlogsUserCreatorService({ newName, username });
-
-  if (updateBlogsUserCreator.error) {
-    res.status(503);
-    res.json({ error });
+  if (userNameResult.error || blogUserCreatorResult.error) {
+    res.status(500);
+    res.json({ error: 'server error while updating the user name' });
     return;
   }
 
-
-  res.json(result)
-
-
+  res.json({ ...userNameResult });
 };
 module.exports = {
-  updateUserNameController
-}
+  updateUserNameController,
+};

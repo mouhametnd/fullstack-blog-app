@@ -1,16 +1,8 @@
 const { userNameDTOValidator } = require('../../dto/user/user-name-dto-validator');
+const { invalidDTOSender } = require('../../utils/invalid-dto-sender');
 
-const updateUserNameMiddleware = (req, res, next) => {
-  if (userNameDTOValidator(req.body)) {
-    next();
-    return;
-  }
-
-  res.status(400)
-  res.json({error: "DTO is not valid"})
-};
-
+const updateUserNameMiddleware = (req, res, next) => (userNameDTOValidator(req.body) ? next() : invalidDTOSender(res));
 
 module.exports = {
-  updateUserNameMiddleware
-}
+  updateUserNameMiddleware,
+};

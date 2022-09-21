@@ -1,26 +1,21 @@
 const { blogShape } = require('../../shapes/blog-shape');
 const { getCollection } = require('../../utils/get-collection');
 
-const addBlogService = async blog => {
+const addBlogService = async ({ blogProps, username }) => {
   try {
-    const newBlog = blogShape(blog);
+    const newBlog = blogShape(blogProps);
     const blogsCollection = getCollection('blogs');
     const usersCollection = getCollection('users');
+    const [{ insertedId }, { modifiedCount }] = await Promise.all([
+      blogsCollection.insertOne(newBlog),
+      usersCollection.updateOne({ username }, { $push: { blogs: newBlog._id } }),
+    ]);
 
-    const result = await blogsCollection.insertOne(newBlog);
-    const updateReslt = await usersCollection.updateOne(
-      {
-        username: blog.userCreator.username,
-      },
-      {
-        $push: {
-          blogs: newBlog._id,
-        },
-      }
-    );
+    if (!insertedId || !modifiedCount) throw new Error();
+
     return { result: { ...newBlog } };
   } catch (error) {
-    return { error };
+    return { error: 'server error while adding blog' };
   }
 };
 
