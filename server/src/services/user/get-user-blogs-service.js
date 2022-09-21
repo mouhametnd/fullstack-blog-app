@@ -1,8 +1,9 @@
 const { userProjectedProps } = require('../../constants/user-projected-props');
 const { getCollection } = require('../../utils/get-collection');
 const { getQueryBlogs } = require('../../utils/get-query-blogs');
+const { getSortedBy } = require('../../utils/get-sorted-by');
 
-const getUserBlogsService = async ({ blogsToSend, blogsToSkip, username }) => {
+const getUserBlogsService = async ({ blogsToSend, blogsToSkip, username, sortBy }) => {
   try {
     const usersCollection = getCollection('users');
     const blogsCollection = getCollection('blogs');
@@ -11,7 +12,7 @@ const getUserBlogsService = async ({ blogsToSend, blogsToSkip, username }) => {
     const queryBlogs = getQueryBlogs(user.blogs).slice(blogsToSkip, blogsToSend);
 
     if (!queryBlogs.length) return { result: [] };
-    const userBlogs = await blogsCollection.find({ $or: queryBlogs }).toArray();
+    const userBlogs = await blogsCollection.find({ $or: queryBlogs }).sort(getSortedBy(sortBy)).toArray();
 
     return { result: userBlogs };
   } catch (error) {

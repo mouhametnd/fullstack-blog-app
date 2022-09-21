@@ -4,7 +4,7 @@ const { updateBlogDetailsService } = require('../../services/blogs/update-blog-s
 const updateBlogDetailsController = async (req, res) => {
   const { blogId } = req.params;
   const { title, description } = req.body;
-  const lastUpdate = new Date();
+  const lastUpdate = Date.now();
   const _id = ObjectId(blogId);
   const result = await updateBlogDetailsService({ _id, description, lastUpdate, title });
 

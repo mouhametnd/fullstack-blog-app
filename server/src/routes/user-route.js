@@ -7,8 +7,8 @@ const { jwtVerifierMiddleware } = require('../middlewares/auth/jwt-verifier-midd
 const { usernameValidatorMiddleware } = require('../middlewares/auth/username-validator-middleware');
 const { updateUserNameMiddleware } = require('../middlewares/user/update-user-name-middleware');
 const { updateUsernameMiddleware } = require('../middlewares/user/update-username-middleware');
-const userRoute = Router();
 
+const userRoute = Router();
 userRoute.use(jwtVerifierMiddleware);
 userRoute.use(usernameValidatorMiddleware);
 
