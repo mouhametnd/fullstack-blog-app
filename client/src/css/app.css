@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 *,
 *::before,
 *::after {
@@ -17,4 +21,12 @@ h5,
 h6 {
   margin: 0px;
   padding: 0px;
+}
+
+body {
+  background-color: #444;
+}
+
+* {
+  @apply text-sky-500;
 }
