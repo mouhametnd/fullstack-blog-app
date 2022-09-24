@@ -1,6 +1,9 @@
 personal.md
+test.ts
 .env
-
+package-lock.json
+all-design.png
+blog-card.png
 # Logs
 logs
 *.log

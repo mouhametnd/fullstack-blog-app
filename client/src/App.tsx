@@ -1,13 +1,13 @@
-import './css/normalize.css'
-import './css/app.css'
+import './css/normalize.css';
+import './css/app.scss';
+import RoutesComponent from './routes/RoutesComponent';
 
 function App() {
-
   return (
-    <div className="App">
-     <h1 className='text-sky-400'>Hello World</h1>
-    </div>
-  )
+    <>
+      <RoutesComponent></RoutesComponent>
+    </>
+  );
 }
 
-export default App
+export default App;
