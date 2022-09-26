@@ -11,7 +11,7 @@ const signInMiddleware = async (req, res, next) => {
   if (isUserRegistered) {
     res.status(409);
     res.json({
-      error: 'user has already registered',
+      error: 'user is already registered',
     });
     return;
   }

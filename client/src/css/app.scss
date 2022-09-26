@@ -43,7 +43,7 @@ body {
   }
 
   &__error {
-    @apply text-red-100 text-sm text-center ;
+    @apply text-red-100 text-sm text-center;
   }
 
   &__cont-main {
@@ -75,22 +75,26 @@ body {
     &::placeholder {
       @apply text-sm text-gray-100;
     }
-
-    
-
   }
 
-  &__button{
-
-  @apply bg-cyanGreen-300 w-max py-1.5 px-7 rounded-xl mx-auto font-medium text-gray-200 ; 
+  &__text {
+    @apply text-gray-200 text-sm text-center;
+    
+    & a {
+      @apply  pl-1.5 text-sm text-cyanGreen-100;
+    }
+    
+  }
+  &__submit {
+    @apply bg-cyanGreen-300 w-max py-1.5 px-7 rounded-xl mx-auto font-medium text-gray-200;
   }
 }
 
-.hover{
-  transition: .2s linear opacity;
+.hover {
+  transition: 0.2s linear opacity;
   @media screen and (hover: hover) {
-    &:hover{
-      opacity: .7;
+    &:hover {
+      opacity: 0.7;
     }
   }
 }

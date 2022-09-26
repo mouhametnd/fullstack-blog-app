@@ -1,23 +1,45 @@
 import { useState } from 'react';
 import { IUseFormProps } from './useFormTypes';
+import axios from 'axios';
 
-const useForm = (formValues: IUseFormProps) => {
-  const [isFormValid, setIsFormValid] = useState(false);
+const useForm = (form: IUseFormProps) => {
+  const { formValues, reqEndpoint, httpMethod, headers } = form;
+  const [isLoading, setIsLoading] = useState<null | boolean>(null);
 
-  // todo if type is not dynamic we change it to string
-  const setFormValue = (name: keyof typeof formValues, newValue: string) => {
+  const setFormValue = (name: string, newValue: string) => {
     formValues[name]!.value = newValue;
   };
 
-  const validateFormValues = () => {
-    const isFormValid = Object.keys(formValues)
+  const isFormValid = () => {
+    const isValid = Object.keys(formValues)
       .map(propName => formValues[propName]!.regex.test(formValues[propName]!.value))
-      .includes(false);
-
-    setIsFormValid(isFormValid);
+      .every(value => value === true);
+    return isValid;
   };
 
-  return { isFormValid, setFormValue, validateFormValues };
+  const sendForm = async () => {
+    if (!isFormValid()) return { error: 'Input fields invalid' };
+    setIsLoading(true);
+
+    try {
+      const reqBody: { [x: string]: string } = {};
+      Object.keys(formValues).forEach(propName => {
+        const { name, value } = formValues[propName]!;
+        reqBody[name] = value;
+      });
+
+      const { data } = await axios[httpMethod](reqEndpoint, reqBody, headers);
+
+      setIsLoading(false);
+      return { ...data, error: false };
+    } catch (error: any) {
+      setIsLoading(false);
+      return error.response.data;
+      
+    }
+  };
+
+  return { isLoading, setFormValue, isFormValid, sendForm };
 };
 
 export default useForm;

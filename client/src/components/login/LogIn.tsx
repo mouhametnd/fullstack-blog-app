@@ -1,5 +1,5 @@
-import React from 'react';
-import inputProps from '../../consants/inputProps';
+import { Link } from 'react-router-dom';
+import {inputProps} from '../../constants/globalConstants';
 
 const LogIn = () => {
   return (
@@ -23,7 +23,11 @@ const LogIn = () => {
             </label>
             <input className="form__input" {...inputProps.password} />
           </div>
-          <button className='form__button hover'>Submit</button>
+
+          <p className='form__text'>Don't have an account?
+            <Link to={'/sign-in'} >Sign  Up</Link>
+          </p>
+          <button className='form__submit hover'>Login</button>
         </div>
       </form>
     </section>

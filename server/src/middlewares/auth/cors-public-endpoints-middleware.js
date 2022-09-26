@@ -1,10 +1,6 @@
-const { setBasicCORSHeaders } = require('../../utils/set-basic-cors-headers');
+const cors = require('cors');
 
-const CORSPublicEndpointsMiddleware = (_, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  setBasicCORSHeaders(res);
-  next();
-};
+const CORSPublicEndpointsMiddleware = cors();
 
 module.exports = {
   CORSPublicEndpointsMiddleware,

@@ -1,4 +1,4 @@
-const inputProps = {
+export const inputProps = {
   name: {
     type: 'text',
     name: 'name',
@@ -22,4 +22,6 @@ const inputProps = {
   },
 };
 
-export default inputProps;
+
+
+export const BASE_API_ENDP = 'http://localhost:3000/api'
