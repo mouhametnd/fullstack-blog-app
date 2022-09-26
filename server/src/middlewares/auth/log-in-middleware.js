@@ -15,8 +15,8 @@ const logInMiddleware = async (req, res, next) => {
   const arePwdsSame = await bcrypt.compare(body.password, isUserRegistered.password);
   if (!arePwdsSame) return wrongCredentialsSender(res);
 
-  const { username, blogs, name } = isUserRegistered;
-  res.locals.user = { username, blogs, name };
+  const { username, blogs, name, latestUpdate } = isUserRegistered;
+  res.locals.user = { username, blogs, name, latestUpdate };
   next();
 };
 

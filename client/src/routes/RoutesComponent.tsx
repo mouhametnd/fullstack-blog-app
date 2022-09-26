@@ -1,17 +1,17 @@
-import { Route, Routes } from 'react-router-dom';
-import LogIn from '../components/login/Login';
+import { Navigate, Route, Routes } from 'react-router-dom';
+import LogIn from '../components/login/LogIn';
 import SignIn from '../components/signin/SignIn';
 import PrivateRoutes from './PrivateRoutes';
 
 const RoutesComponent = () => {
-  // todo do routing here
   return (
     <Routes>
-      <Route path="/log-in" element={<LogIn />}></Route>
-      {/* signin */}
-      <Route path="/sign-in" element={<SignIn />}></Route>
+      <Route path="/log-in" element={<LogIn />} />
+      <Route path="/sign-in" element={<SignIn />} />
 
-      <Route element={<PrivateRoutes />}>{/* private routes... */}</Route>
+      <Route path="/" element={<PrivateRoutes />} />
+
+      <Route path="*" element={<Navigate to="/sign-in" />} />
     </Routes>
   );
 };

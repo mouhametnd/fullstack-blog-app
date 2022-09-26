@@ -10,7 +10,7 @@ const userShape = async ({ name, username, password }) => {
     password: hashedPwd,
     _id: ObjectId(),
     blogs: [],
-    latestChange: Date.now(),
+    latestUpdate: Date.now(),
   };
 };
 

@@ -3,32 +3,36 @@ import { inputProps } from '../../constants/globalConstants';
 import useForm from '../../hooks/useForm/useForm';
 import { signInUseFormProps, TSignInResponse } from './signInConstants';
 import { ChangeEvent, FormEvent, useState } from 'react';
+import Loader from '../loader/Loader';
+import { useAuthen } from '../../hooks/useAuthen';
 
 const SignIn = () => {
   const [error, setError] = useState<false | string>(false);
+  const { authenticate } = useAuthen();
 
-  const { isLoading, sendForm, setFormValue, isFormValid } = useForm(signInUseFormProps);
+  const { isLoading, sendForm, setFormValue } = useForm(signInUseFormProps);
 
   const handleBlur = (name: string) => (e: ChangeEvent<HTMLInputElement>) => setFormValue(name, e.target.value);
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (!isFormValid()) return;
-    const response = (await sendForm()) as TSignInResponse;
+    const { error, result } = (await sendForm()) as TSignInResponse;
+    if (error) return setError(error);
 
-    if (response.error) return setError(response.error);
-
-    // 
+    // todo useForm ()
+    authenticate(result);
+    setError(false);
+    (e.target as HTMLFormElement).reset();
   };
-
-  if (isLoading) return <p className="form__text">IS LOADING</p>;
 
   return (
     <section className="form-wrapper">
+      {isLoading && <Loader />}
+
       <form className="form" onSubmit={handleSubmit}>
         <h1 className="form__title">Sign In</h1>
 
-        {<span className="form__error"> Input fields invalid</span>}
+        {error && <span className="form__error">{error}</span>}
 
         <div className="form__cont-main">
           <div className="form__cont-input">

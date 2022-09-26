@@ -1,11 +1,13 @@
 const { createUserToken } = require('../../utils/create-user-token');
 
 const logInController = async (_, res) => {
-  const { name, username} = res.locals.user;
+  const { name, username } = res.locals.user;
   const userToken = await createUserToken(username, name);
   res.json({
-    user: res.locals.user,
-    userToken,
+    result: {
+      user: res.locals.user,
+      userToken,
+    },
   });
 };
 

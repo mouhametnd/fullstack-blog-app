@@ -8,7 +8,7 @@ const updateUsernameService = async ({ newUsername, username }) => {
       {
         $set: {
           username: newUsername,
-          latestChange: Date.now(),
+          latestUpdate: Date.now(),
         },
       }
     );

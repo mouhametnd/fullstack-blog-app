@@ -1,5 +1,6 @@
 import { BASE_API_ENDP } from '../../constants/globalConstants';
 import { IUseFormProps } from '../../hooks/useForm/useFormTypes';
+import { TUserSlice } from '../../store/slices/user/userSliceTypes';
 
 export const signInUseFormProps: IUseFormProps = {
   reqEndpoint: `${BASE_API_ENDP}/sign-in`,
@@ -24,4 +25,4 @@ export const signInUseFormProps: IUseFormProps = {
   },
 };
 
-export type TSignInResponse = { error: string; } | { result: string; error: false };
+export type TSignInResponse = { error: string; result: null } | { result: TUserSlice; error: false };

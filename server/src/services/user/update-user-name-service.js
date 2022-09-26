@@ -5,7 +5,7 @@ const updateUserNameService = async ({ newName, username }) => {
     const usersCollection = getCollection('users');
     const { modifiedCount } = await usersCollection.updateOne(
       { username },
-      { $set: { name: newName, latestChange: Date.now() } }
+      { $set: { name: newName, latestUpdate: Date.now() } }
     );
 
     if (!modifiedCount) throw new Error();

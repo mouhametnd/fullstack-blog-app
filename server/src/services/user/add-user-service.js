@@ -4,10 +4,11 @@ const { getCollection } = require('../../utils/get-collection');
 const addUserService = async userProps => {
   try {
     const usersCollection = getCollection('users');
-    const newUSer = await userShape({ ...userProps });
-    await usersCollection.insertOne(newUSer);
+    const newUser = await userShape({ ...userProps });
+    await usersCollection.insertOne(newUser);
 
-    return { result: 'user signed successfully' };
+    const { blogs, name, username, latestUpdate } = newUser;
+    return { result: { blogs, name, username, latestUpdate } };
   } catch (error) {
     return { error: 'server error signing the user' };
   }

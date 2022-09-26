@@ -18,7 +18,7 @@ const useForm = (form: IUseFormProps) => {
   };
 
   const sendForm = async () => {
-    if (!isFormValid()) return { error: 'Input fields invalid' };
+    if (!isFormValid()) return { error: 'Form fields invalid' };
     setIsLoading(true);
 
     try {
