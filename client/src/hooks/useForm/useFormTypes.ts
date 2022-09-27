@@ -11,3 +11,4 @@ export interface IUseFormProps {
     };
   };
 }
+export type TUseFormError = { msg: string } | { msg: false };

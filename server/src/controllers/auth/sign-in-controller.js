@@ -14,7 +14,7 @@ const signInController = async ({ body }, res) => {
   }
 
   res.json({
-    result: { userToken, user: result },
+    result: { userToken, ...result },
   });
 };
 

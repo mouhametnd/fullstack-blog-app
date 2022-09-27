@@ -5,14 +5,19 @@ const { getSortedBy } = require('../../utils/get-sorted-by');
 
 const getUserService = async ({ username, maxNumOfBlogs, sortBy }) => {
   try {
+    console.log(username);
+    console.log(maxNumOfBlogs);
+    console.log(sortBy);
     const usersCollection = getCollection('users');
     const blogsCollection = getCollection('blogs');
     const [user] = await usersCollection.find({ username }).project(userProjectedProps).toArray();
-
     const queryBlogs = getQueryBlogs(user.blogs, maxNumOfBlogs);
+
+    if (!queryBlogs.length) return { result: { ...user } };
+
     const userLatestBlogs = await blogsCollection.find({ $or: queryBlogs }).sort(getSortedBy(sortBy)).toArray();
 
-    return { result: { user, userLatestBlogs } };
+    return { result: { ...user, userLatestBlogs } };
   } catch (error) {
     return { error: 'server error while fetching user credits' };
   }

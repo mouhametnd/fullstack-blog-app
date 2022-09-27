@@ -1,9 +1,8 @@
 import { IUser } from '../../../types/types';
 
-export type TUserSlice = null | {
-  userToken: string;
-  user: IUser;
-};
+export type TUserSlice =IUser & {
+      userToken: string;
+    } | null;
 
 export interface IUserSliceCaseReducers {
   [x: string]: (state: TUserSlice, action: { type: string; payload: any }) => TUserSlice;

@@ -1,28 +1,25 @@
 import { Link } from 'react-router-dom';
 import { inputProps } from '../../constants/globalConstants';
 import useForm from '../../hooks/useForm/useForm';
-import { signInUseFormProps, TSignInResponse } from './signInConstants';
-import { ChangeEvent, FormEvent, useState } from 'react';
+import { signInUseFormProps } from './signInConstants';
+import { ChangeEvent, FormEvent } from 'react';
 import Loader from '../loader/Loader';
 import { useAuthen } from '../../hooks/useAuthen';
+import { TLoginSigninResponse } from '../../types/types';
 
 const SignIn = () => {
-  const [error, setError] = useState<false | string>(false);
-  const { authenticate } = useAuthen();
-
-  const { isLoading, sendForm, setFormValue } = useForm(signInUseFormProps);
+  const { authenticator } = useAuthen();
+  const { isLoading, error, sendForm, setFormValue } = useForm(signInUseFormProps);
 
   const handleBlur = (name: string) => (e: ChangeEvent<HTMLInputElement>) => setFormValue(name, e.target.value);
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const { error, result } = (await sendForm()) as TSignInResponse;
-    if (error) return setError(error);
-
-    // todo useForm ()
-    authenticate(result);
-    setError(false);
-    (e.target as HTMLFormElement).reset();
+    const response = (await sendForm()) as TLoginSigninResponse;
+    if (response?.userToken) {
+      authenticator(response);
+      (e.target as HTMLFormElement).reset();
+    }
   };
 
   return (
@@ -32,14 +29,14 @@ const SignIn = () => {
       <form className="form" onSubmit={handleSubmit}>
         <h1 className="form__title">Sign In</h1>
 
-        {error && <span className="form__error">{error}</span>}
+        {error.msg && <span className="form__error">{error.msg}</span>}
 
         <div className="form__cont-main">
           <div className="form__cont-input">
             <label className="form__label" htmlFor="name">
               Name
             </label>
-            <input className="form__input" {...inputProps.name} onBlur={handleBlur(inputProps.name.name)} />
+            <input className="form__input" {...inputProps.name} onBlur={handleBlur(inputProps.name.name)}  />
           </div>
           <div className="form__cont-input">
             <label className="form__label" htmlFor="username">

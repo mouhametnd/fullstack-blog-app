@@ -1,11 +1,13 @@
+import { TUserSlice } from '../store/slices/user/userSliceTypes';
+import store from '../store/store';
+
 export interface IUser {
-  blogs: IBlog[];
+  blogs: string[];
   name: string;
   username: string;
   latestUpdate: number;
+  userLatestBlogs: IBlog[] | void;
 }
-
-
 
 export interface IBlog {
   _id: string;
@@ -21,3 +23,10 @@ export interface IBlog {
   };
   lastUpdate: number;
 }
+
+export type IStore =  {
+  user: TUserSlice;
+  isAuthen: boolean;
+}
+
+export type TLoginSigninResponse = TUserSlice | { userToken: null };

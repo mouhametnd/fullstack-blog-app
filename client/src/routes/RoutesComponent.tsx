@@ -6,12 +6,11 @@ import PrivateRoutes from './PrivateRoutes';
 const RoutesComponent = () => {
   return (
     <Routes>
-      <Route path="/log-in" element={<LogIn />} />
-      <Route path="/sign-in" element={<SignIn />} />
+      {/* <Route path="/log-in" element={<LogIn />} /> */}
+      {/* <Route path="/sign-in" element={<SignIn />} /> */}
 
-      <Route path="/" element={<PrivateRoutes />} />
+      <Route path='*' element={<PrivateRoutes />} />
 
-      <Route path="*" element={<Navigate to="/sign-in" />} />
     </Routes>
   );
 };

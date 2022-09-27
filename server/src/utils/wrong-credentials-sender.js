@@ -1,6 +1,6 @@
 const wrongCredentialsSender = resObj => {
   resObj.status(400);
-  resObj.json({ error: 'user credentials wrong' });
+  resObj.json({ error: 'username or password is incorrect' });
 };
 
 module.exports = {

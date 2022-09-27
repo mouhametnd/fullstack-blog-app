@@ -4,7 +4,8 @@ export const inputProps = {
     name: 'name',
     id: 'name',
     placeholder: 'Your name',
-    pattern: '[a-zA-Z]{3,}'
+    pattern: '[a-zA-Z]{3,}.*',
+    autoComplete: 'off',
   },
   username: {
     type: 'text',
@@ -12,6 +13,7 @@ export const inputProps = {
     name: 'username',
     placeholder: 'Your username',
     pattern: '^[A-Za-z][A-Za-z0-9_]{7,}$',
+    autoComplete: 'off',
   },
   password: {
     type: 'password',
@@ -19,9 +21,28 @@ export const inputProps = {
     id: 'password',
     placeholder: 'Your password',
     pattern: '^[A-Za-z]([A-Za-z0-9_]){7,}$',
+    autoComplete: 'off',
+    
   },
 };
 
+export const baseFormProps = {
+  name: {
+    name: 'name',
+    regex: /[a-zA-Z]{3,}.*/,
+    value: '',
+  },
 
+  username: {
+    name: 'username',
+    regex: /^[A-Za-z][A-Za-z0-9_]{7,}$/,
+    value: '',
+  },
+  password: {
+    name: 'password',
+    regex: /^[A-Za-z]([A-Za-z0-9_]){7,}$/,
+    value: '',
+  },
+};
 
-export const BASE_API_ENDP = 'http://localhost:3000/api'
+export const API_BASE_URL = 'http://localhost:3000/api';
