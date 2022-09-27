@@ -5,9 +5,7 @@ const { getSortedBy } = require('../../utils/get-sorted-by');
 
 const getUserService = async ({ username, maxNumOfBlogs, sortBy }) => {
   try {
-    console.log(username);
-    console.log(maxNumOfBlogs);
-    console.log(sortBy);
+  
     const usersCollection = getCollection('users');
     const blogsCollection = getCollection('blogs');
     const [user] = await usersCollection.find({ username }).project(userProjectedProps).toArray();

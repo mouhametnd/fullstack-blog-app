@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.navbar{
+  @apply flex flex-col justify-evenly gap-3 py-5  px-5 ;
+
+  &__a{
+    @apply text-center text-gray-100 transition-colors  py-1;
+
+    &--active{
+      @apply text-cyanGreen-100;
+    }
+  }
+
+
+
+}
+
+@media screen and (hover: hover) {
+
+  .navbar__a:hover {
+    @apply text-cyanGreen-100;
+  }
+  
+}

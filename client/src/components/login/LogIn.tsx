@@ -49,7 +49,7 @@ const LogIn = () => {
             Don't have an account?
             <Link to={'/sign-in'}>Sign Up</Link>
           </p>
-          <button className="form__submit hover">Login</button>
+          <button className="button hover">Login</button>
         </div>
       </form>
     </section>

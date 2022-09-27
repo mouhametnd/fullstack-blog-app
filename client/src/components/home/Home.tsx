@@ -1,14 +1,17 @@
 import React from 'react';
 import { Outlet, Link } from 'react-router-dom';
+import NavBar from '../navBar/NavBar';
+import Header from '../header/Header';
 
 const Home = () => {
   return (
     <>
-      <h1>Home</h1>
-      <Link to="/dashboard">To Dashboard</Link>
-      <Link to="/all-blogs">To all-bllogs</Link>
-      <Link to="/my-blogs">To my-home</Link>
-      <Outlet />
+      <Header />
+      {/* <NavBar /> */}
+      {/* settinghs  */}
+
+      
+
     </>
   );
 };

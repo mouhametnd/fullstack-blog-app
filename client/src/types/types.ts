@@ -6,7 +6,7 @@ export interface IUser {
   name: string;
   username: string;
   latestUpdate: number;
-  userLatestBlogs: IBlog[] | void;
+  userLatestBlogs?: IBlog[] ;
 }
 
 export interface IBlog {

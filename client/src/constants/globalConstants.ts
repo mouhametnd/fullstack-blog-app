@@ -1,3 +1,5 @@
+import { ISelectOption } from '../components/customSelect/customSelectTypes';
+
 export const inputProps = {
   name: {
     type: 'text',
@@ -22,7 +24,6 @@ export const inputProps = {
     placeholder: 'Your password',
     pattern: '^[A-Za-z]([A-Za-z0-9_]){7,}$',
     autoComplete: 'off',
-    
   },
 };
 
@@ -46,3 +47,12 @@ export const baseFormProps = {
 };
 
 export const API_BASE_URL = 'http://localhost:3000/api';
+
+export const sortByOptions: ISelectOption[] = [
+  { title: 'Random', value: 'random' },
+  { title: 'Newest', value: 'newest' },
+  { title: 'Latest', value: 'latest' },
+  { title: 'Most voted', value: 'mostVoted' },
+  { title: 'Less voted', value: 'lessVoted' },
+  { title: 'Title', value: 'title' },
+];

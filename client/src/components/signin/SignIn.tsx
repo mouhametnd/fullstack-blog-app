@@ -56,7 +56,7 @@ const SignIn = () => {
             <Link to={'/log-in'}>Log in now</Link>
           </p>
 
-          <button className="form__submit hover">Submit</button>
+          <button className="button hover">Submit</button>
         </div>
       </form>
     </section>
