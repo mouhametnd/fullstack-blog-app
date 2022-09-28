@@ -56,3 +56,11 @@ export const sortByOptions: ISelectOption[] = [
   { title: 'Less voted', value: 'lessVoted' },
   { title: 'Title', value: 'title' },
 ];
+
+
+export const perPageOptions: ISelectOption[] = [
+  { title: '5', value: '5' },
+  { title: '10', value: '10' },
+  { title: '15', value: '15' },
+  { title: '20', value: '20' },
+];

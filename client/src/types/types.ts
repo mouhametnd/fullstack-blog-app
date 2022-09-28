@@ -1,3 +1,4 @@
+import { ISearchParamsSlice } from '../store/slices/searchParams/searchParamsTypes';
 import { TUserSlice } from '../store/slices/user/userSliceTypes';
 import store from '../store/store';
 
@@ -6,7 +7,7 @@ export interface IUser {
   name: string;
   username: string;
   latestUpdate: number;
-  userLatestBlogs?: IBlog[] ;
+  userLatestBlogs?: IBlog[];
 }
 
 export interface IBlog {
@@ -24,9 +25,19 @@ export interface IBlog {
   lastUpdate: number;
 }
 
-export type IStore =  {
+export type IStore = {
   user: TUserSlice;
   isAuthen: boolean;
-}
+  searchParams: ISearchParamsSlice
+};
 
 export type TLoginSigninResponse = TUserSlice | { userToken: null };
+
+export type TSortByValues = 'random' | 'newest' | 'latest' | 'mostVoted' | 'lessVoted' | 'title';
+export type TPerPageValues = '5' | '10' | '15' | '20';
+
+export interface IBaseAction {
+  type: string;
+  payload: any
+  
+}

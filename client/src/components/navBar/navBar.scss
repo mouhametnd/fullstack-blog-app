@@ -4,13 +4,13 @@
 
 
 .navbar{
-  @apply flex flex-col justify-evenly gap-3 py-5  px-5 ;
+  @apply flex flex-col justify-evenly gap-3   ml-auto;
 
   &__a{
     @apply text-center text-gray-100 transition-colors  py-1;
 
     &--active{
-      @apply text-cyanGreen-100;
+      @apply text-cyanGreen-100 font-semibold;
     }
   }
 
