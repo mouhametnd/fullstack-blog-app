@@ -1,3 +1,4 @@
+import { IBlogsSlice } from '../store/slices/blogs/blogsSliceTypes';
 import { ISearchParamsSlice } from '../store/slices/searchParams/searchParamsTypes';
 import { TUserSlice } from '../store/slices/user/userSliceTypes';
 import store from '../store/store';
@@ -29,6 +30,7 @@ export type IStore = {
   user: TUserSlice;
   isAuthen: boolean;
   searchParams: ISearchParamsSlice
+  blogs: IBlogsSlice
 };
 
 export type TLoginSigninResponse = TUserSlice | { userToken: null };

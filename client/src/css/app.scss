@@ -37,6 +37,7 @@ body {
 }
 
 .form {
+  
   @apply w-[89%] max-w-xs m-auto  bg-white p-8 rounded-lg flex flex-col gap-1;
 
   & button {
@@ -92,7 +93,16 @@ body {
 }
 
 .button {
-  @apply  py-1.5 px-7 rounded-xl font-medium ;
+  @apply py-1.5 px-7 rounded-xl font-medium;
+}
+
+.blogs {
+  &-wrapper {
+    @apply bg-red-100;
+  }
+  &-error-msg {
+    @apply text-red-100 text-center font-semibold py-5;
+  }
 }
 
 .hover {

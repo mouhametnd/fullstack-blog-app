@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.upvote-button {
+  @apply flex flex-col bg-cyanGreen-100 rounded-xl py-2 px-4 w-max h-max cursor-pointer transition-opacity gap-3;
+
+  & span {
+    @apply text-inherit text-sm font-medium;
+  }
+}
+butto
+.isUpvoted {
+  @apply bg-cyanGreen-100 text-white;
+}
+

@@ -1,28 +1,29 @@
-import React from 'react'
-import usePagination from '../../hooks/usePagination'
+import { useBlogProps } from '../../constants/globalConstants';
+import useBlogsReq from '../../hooks/useBlogs/userBlogsReq';
+
+import b from '../../blogs';
+import NormalBlog from '../NormalBlog';
+import { IBlog } from '../../types/types';
 
 const AllBlogs = () => {
+  // const { blogs, blogsErrorMsg, hasMoreBlogs, increasePage } = useBlogsReq(useBlogProps);
+  const bl = b as any as IBlog[];
 
-/*
- - ddo requiest to `blogs` endpoint with the current pagination
+  // if (blogsErrorMsg || !blogs) return <p className="blogs-error-msg">{blogsErrorMsg}</p>;
 
- incrasePage
- getPaepage can be null or an array and depeding on that we'll make a request or not when the components is mounted
-
- setAllBlogs that set fron null ri array
- append reducer that extend the allblogs
- increasePage
-
- whenever loadmor is clicked we append hhe array'
-
- and alice that handle user-blogs, allBlogs, dashboard-blogs
-
- ## useblogs
- argunments is and object that include the blogsname, 
-*/ 
   return (
-    <div>AllBlogs</div>
-  )
-}
+    <section className="blogs-wrapper">
+      {bl.map(blog => (
+        <NormalBlog blog={blog} key={blog._id}/>
+      ))}
+    </section>
+    // <>
+    //   {hasMoreBlogs && <button onClick={increasePage}>Load More</button>}
+    //   {blogs.map(({ title }, i) => (
+    //     <p key={i}> {title}</p>
+    //   ))}
+    // </>
+  );
+};
 
-export default AllBlogs
+export default AllBlogs;

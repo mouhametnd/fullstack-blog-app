@@ -1,4 +1,5 @@
 import { ISelectOption } from '../components/customSelect/customSelectTypes';
+import { IUseBlogsProps } from '../hooks/useBlogs/useBlogsTypes';
 
 export const inputProps = {
   name: {
@@ -64,3 +65,13 @@ export const perPageOptions: ISelectOption[] = [
   { title: '15', value: '15' },
   { title: '20', value: '20' },
 ];
+
+
+
+export const useBlogProps: IUseBlogsProps = {
+  blogsName: 'allBlogs',
+  reqEndpoint: `${API_BASE_URL}/blogs`,
+  headers: {},
+};
+
+

@@ -18,8 +18,9 @@ const CustomSelect = ({ selectOptions, optionClickHandler, title }: TCustomSelec
     // todo pass to  some to class
     <div className="relative" onClick={() => setShouldDisplayOptions(prev => !prev)}>
       <span className="flex  gap-1  cursor-pointer text-gray-100">
-        {title}:<span className="font-semibold  text-cyanGreen-100">{selectedOption.title}</span>
-        <ArrowIcon className={shouldDisplayOptions ? 'rotate-180' : ''} />
+        {title}:
+        <span className="font-semibold  text-cyanGreen-100">{selectedOption.title}</span>
+        <ArrowIcon className={shouldDisplayOptions ? 'rotate-180 stroke-cyanGreen-100' : 'stroke-cyanGreen-100'} />
       </span>
 
       <ul className={`cont-options ${shouldDisplayOptions && 'is-open'}`}>

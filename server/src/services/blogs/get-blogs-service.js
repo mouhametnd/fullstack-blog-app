@@ -10,9 +10,9 @@ const getBlogsService = async ({ blogsToSend, blogsToSkip, sortBy }) => {
       .limit(blogsToSend)
       .sort(getSortedBy(sortBy))
       .toArray();
+      console.log(result)
     return { result };
   } catch (error) {
-    console.log(error);
     return { error };
   }
 };
