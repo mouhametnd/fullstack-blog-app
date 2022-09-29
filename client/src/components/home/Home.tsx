@@ -7,6 +7,7 @@ import AllBlogs from '../allBlogs/AllBlogs';
 const Home = () => {
   return (
     <>
+    
       <Header />
 
       <Outlet />

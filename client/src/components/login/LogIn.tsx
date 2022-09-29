@@ -1,6 +1,6 @@
 import { ChangeEvent, FormEvent } from 'react';
 import { Link } from 'react-router-dom';
-import { inputProps } from '../../constants/globalConstants';
+import { baseInputProps } from '../../constants/globalConstants';
 import { useAuthen } from '../../hooks/useAuthen';
 import useForm from '../../hooks/useForm/useForm';
 import { TLoginSigninResponse } from '../../types/types';
@@ -36,13 +36,13 @@ const LogIn = () => {
             <label className="form__label" htmlFor="username">
               username
             </label>
-            <input className="form__input" {...inputProps.username} onBlur={handleBlur(inputProps.username.name)} />
+            <input className="form__input" {...baseInputProps.username} onBlur={handleBlur(baseInputProps.username.name)} />
           </div>
           <div className="form__cont-input">
             <label className="form__label" htmlFor="password">
               Passowrd
             </label>
-            <input className="form__input" {...inputProps.password} onBlur={handleBlur(inputProps.password.name)} />
+            <input className="form__input" {...baseInputProps.password} onBlur={handleBlur(baseInputProps.password.name)} />
           </div>
 
           <p className="form__text">

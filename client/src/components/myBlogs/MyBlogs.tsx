@@ -1,9 +1,34 @@
-import React from 'react'
+import React from 'react';
+import { API_BASE_URL } from '../../constants/globalConstants';
+import { IUseBlogsProps } from '../../hooks/useBlogs/useBlogsTypes';
+import useBlogsReq from '../../hooks/useBlogs/userBlogsReq';
+import useUser from '../../hooks/userUser';
+import NormalBlog from '../normalButton/NormalBlog';
+import LoadMoreButton from '../others/LoadMoreButton';
+import UserBlogs from '../userBlogs/UserBlogs';
 
 const MyBlogs = () => {
-  return (
-    <div>MyBlogs</div>
-  )
-}
+  const { user } = useUser();
+  const userId = user._id;
 
-export default MyBlogs
+  const useBlogProps: IUseBlogsProps = {
+    blogsName: 'userBlogs',
+    reqEndpoint: `${API_BASE_URL}/user/blogs`,
+    headers: { Authorization: user.userToken },
+  };
+  const { blogs, blogsErrorMsg, hasMoreBlogs, increasePage, voteBlogReq } = useBlogsReq(useBlogProps);
+  
+  if (blogsErrorMsg || !blogs) return <p className="blogs-error-msg">{blogsErrorMsg}</p>;
+  return (
+    <>
+      <section className="blogs-wrapper">
+        {blogs.map(blog => (
+          <UserBlogs blog={blog} userId={userId} key={blog._id} toggleBlogVote={voteBlogReq} />
+        ))}
+      </section>
+      {hasMoreBlogs && <LoadMoreButton handleClick={increasePage} />}
+    </>
+  );
+};
+
+export default MyBlogs;

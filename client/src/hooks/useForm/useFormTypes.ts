@@ -1,8 +1,9 @@
-import { AxiosRequestConfig } from 'axios';
 export interface IUseFormProps {
   reqEndpoint: string;
   httpMethod: 'post' | 'put' | 'patch';
-  headers?: AxiosRequestConfig<{ [x: string]: string }>;
+  headers?: {};
+  successCb?: () => unknown;
+  errorCb?: () => unknown;
   formValues: {
     [x: string]: {
       name: string;

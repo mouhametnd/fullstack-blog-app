@@ -14,6 +14,8 @@ export interface IBlogsSliceCaseReducers {
   setBlogs(a: IBlogsSlice, b: ISetBlogsAction): IBlogsSlice;
   appendBlogs(a: IBlogsSlice, b: ISetBlogsAction): IBlogsSlice;
   increasePage(a: IBlogsSlice, b: IIncreasePageAction): IBlogsSlice;
+  toggleBlogVote(a: IBlogsSlice, b: IToggleBlogVote): IBlogsSlice;
+  resetBlogs(a: IBlogsSlice, ): IBlogsSlice;
 }
 
 export interface ISetBlogsAction extends IBaseAction {
@@ -24,4 +26,11 @@ export interface ISetBlogsAction extends IBaseAction {
 }
 export interface IIncreasePageAction extends IBaseAction {
   payload: TBlogsNames;
+}
+export interface IToggleBlogVote extends IBaseAction {
+  payload: {
+    blogsName: TBlogsNames;
+    blogId: string;
+    userId: string;
+  };
 }

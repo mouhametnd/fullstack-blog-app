@@ -27,7 +27,7 @@ blogsRoute.use(['/del/:blogId', '/update/:blogId'], checkBlogCreatorMiddleware);
 blogsRoute.post('/add', addgetBlogController);
 blogsRoute.delete('/del/:blogId', delgetBlogController);
 blogsRoute.patch('/update/:blogId', updateBlogDetailsController);
-blogsRoute.patch('/votes/:blogId', updateBlogVotesMiddleware, updateBlogVotesController);
+blogsRoute.patch('/vote/:blogId', updateBlogVotesMiddleware, updateBlogVotesController);
 
 module.exports = {
   blogsRoute,

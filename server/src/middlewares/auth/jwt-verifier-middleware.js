@@ -2,7 +2,6 @@ const { jwtVerify } = require('jose');
 const { unauthorizedSender } = require('../../utils/unauthorized-sender');
 
 const jwtVerifierMiddleware = async (req, res, next) => {
-  
   try {
     const userToken = req.headers.authorization;
     const textEncoder = new TextEncoder();

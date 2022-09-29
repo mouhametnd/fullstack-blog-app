@@ -1,7 +1,9 @@
 import { ISelectOption } from '../components/customSelect/customSelectTypes';
 import { IUseBlogsProps } from '../hooks/useBlogs/useBlogsTypes';
+import { IUseFormProps } from '../hooks/useForm/useFormTypes';
+import { IFormInputProps } from '../types/types';
 
-export const inputProps = {
+export const baseInputProps = {
   name: {
     type: 'text',
     name: 'name',
@@ -26,9 +28,26 @@ export const inputProps = {
     pattern: '^[A-Za-z]([A-Za-z0-9_]){7,}$',
     autoComplete: 'off',
   },
+  title: {
+    autoComplete: 'off',
+    id: 'title',
+    name: 'title',
+    pattern: '[.]{3,}.*',
+    placeholder: 'Blog title',
+    type: 'text',
+  },
+
+  description: {
+    autoComplete: 'off',
+    id: 'description',
+    name: 'description',
+    pattern: '[.]{3,}.*',
+    placeholder: 'Blog description',
+    type: 'text',
+  },
 };
 
-export const baseFormProps = {
+export const baseFormValues = {
   name: {
     name: 'name',
     regex: /[a-zA-Z]{3,}.*/,
@@ -45,6 +64,16 @@ export const baseFormProps = {
     regex: /^[A-Za-z]([A-Za-z0-9_]){7,}$/,
     value: '',
   },
+  description: {
+    name: 'description',
+    regex: /^[.]{3,}.*$/,
+    value: '',
+  },
+  title: {
+    name: 'title',
+    regex: /^[.]{3,}.*$/,
+    value: '',
+  },
 };
 
 export const API_BASE_URL = 'http://localhost:3000/api';
@@ -58,20 +87,11 @@ export const sortByOptions: ISelectOption[] = [
   { title: 'Title', value: 'title' },
 ];
 
-
 export const perPageOptions: ISelectOption[] = [
   { title: '5', value: '5' },
   { title: '10', value: '10' },
   { title: '15', value: '15' },
   { title: '20', value: '20' },
 ];
-
-
-
-export const useBlogProps: IUseBlogsProps = {
-  blogsName: 'allBlogs',
-  reqEndpoint: `${API_BASE_URL}/blogs`,
-  headers: {},
-};
 
 

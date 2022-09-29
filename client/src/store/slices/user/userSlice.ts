@@ -3,11 +3,12 @@ import { setUserReducer } from './setUserReducer';
 import { IUserSliceCaseReducers, TUserSlice } from './userSliceTypes';
 
 const initialState = {
-  username: 'jon_lenosnss',
+  _id:'633492815d49a039a96e8243',
+  username: 'jonan__1',
   blogs: [],
-  name: 'lopezwws',
+  name: 'jonan',
   userToken:
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Impvbl9sZW5vc25zcyIsIm5hbWUiOiJsb3Blend3cyIsImlhdCI6MTY2NDI5NTI1NiwiZXhwIjoxNjY0Mjk4ODU2fQ.HsklITLawDBUsUHpqitbR2HMp9DAFaONvo0k-qRW-JY',
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImpvbmFuX18xIiwibmFtZSI6ImpvbmFuICIsImlhdCI6MTY2NDQ3MDA3NiwiZXhwIjoxNjY0NDg4MDc2fQ.khkssmmV0gCyxpte1UXGiH52luMVp3SoTfG9QUUpvgE',
   latestUpdate: 1664292844933,
 };
 

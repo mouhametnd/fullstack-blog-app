@@ -7,8 +7,8 @@ const addUserService = async userProps => {
     const newUser = await userShape({ ...userProps });
     await usersCollection.insertOne(newUser);
 
-    const { blogs, name, username, latestUpdate } = newUser;
-    return { result: { blogs, name, username, latestUpdate } };
+    const { blogs, name, username, latestUpdate,_id } = newUser;
+    return { result: { blogs, name, username, latestUpdate, _id } };
   } catch (error) {
     return { error: 'server error signing the user' };
   }

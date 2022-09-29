@@ -4,8 +4,8 @@ import { ISelectOption, TCustomSelectProps } from './customSelectTypes';
 import './customSelect.scss';
 import CheckIcon from '../others/CheckIcon';
 
-const CustomSelect = ({ selectOptions, optionClickHandler, title }: TCustomSelectProps) => {
-  const [selectedOption, setSelectedOption] = useState<ISelectOption>(selectOptions[0]!);
+const CustomSelect = ({ selectOptions, optionClickHandler, title, defaultValue }: TCustomSelectProps) => {
+  const [selectedOption, setSelectedOption] = useState<ISelectOption>(selectOptions[defaultValue || 0]!);
   const [shouldDisplayOptions, setShouldDisplayOptions] = useState<boolean>(false);
 
   const optionHandler = (option: ISelectOption) => {
@@ -18,8 +18,7 @@ const CustomSelect = ({ selectOptions, optionClickHandler, title }: TCustomSelec
     // todo pass to  some to class
     <div className="relative" onClick={() => setShouldDisplayOptions(prev => !prev)}>
       <span className="flex  gap-1  cursor-pointer text-gray-100">
-        {title}:
-        <span className="font-semibold  text-cyanGreen-100">{selectedOption.title}</span>
+        {title}:<span className="font-semibold  text-cyanGreen-100">{selectedOption.title}</span>
         <ArrowIcon className={shouldDisplayOptions ? 'rotate-180 stroke-cyanGreen-100' : 'stroke-cyanGreen-100'} />
       </span>
 

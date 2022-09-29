@@ -1,0 +1,39 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.blog {
+  @apply p-5 rounded-md border-t-2 border-cyanGreen-100 flex flex-col gap-2 max-w-sm  m-auto w-full ;
+  
+
+  &__cont-title {
+    @apply flex flex-col gap-2 md:flex-row md:items-center justify-between;
+  }
+
+  &__title {
+    @apply text-xl font-semibold text-cyanGreen-100;
+  }
+
+  &__date {
+    @apply text-sm text-gray-100;
+  }
+  &__time {
+    @apply pl-1 inline-block;
+  }
+
+  &__description {
+    @apply text-gray-100 text-base;
+  }
+
+  &__cont-bottom {
+    @apply flex flex-row items-end justify-between;
+  }
+
+  &__creator-name {
+    @apply text-cyanGreen-100 font-semibold;
+  }
+
+  & .upvote-button {
+    @apply order-1 md:-order-none;
+  }
+}

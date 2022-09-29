@@ -4,9 +4,9 @@ import axios from 'axios';
 
 const useForm = (form: IUseFormProps) => {
   const { formValues, reqEndpoint, httpMethod, headers } = form;
+
   const [isLoading, setIsLoading] = useState<null | boolean>(null);
   const [error, setError] = useState<TUseFormError>({ msg: false });
-
   const setFormValue = (name: string, newValue: string) => {
     formValues[name]!.value = newValue;
   };
@@ -18,7 +18,7 @@ const useForm = (form: IUseFormProps) => {
     return isValid;
   };
 
-  const sendForm = async () => {
+  const sendForm = async (successCb?: () => unknown, errorCb?: () => unknown) => {
     if (!isFormValid()) return setError({ msg: 'Form fields invalid' });
 
     try {
@@ -29,13 +29,15 @@ const useForm = (form: IUseFormProps) => {
         reqBody[name] = value;
       });
       const res = await axios[httpMethod](reqEndpoint, reqBody, headers);
-   
+
       setIsLoading(false);
       setError({ msg: false });
+      successCb && successCb();
       return { ...res.data.result };
     } catch (error: any) {
       setIsLoading(false);
       setError({ msg: error.response.data.error });
+      errorCb && errorCb();
       return { result: null };
     }
   };

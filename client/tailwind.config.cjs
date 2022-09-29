@@ -7,6 +7,9 @@ module.exports = {
   content: ['./src/**/*.{js,jsx,ts,tsx}'],
   theme: {
     extend: {
+
+
+
       colors: {
         bodyBg: '#f7f8fd',
         white: '#ffffff',
@@ -32,6 +35,12 @@ module.exports = {
       fontFamily: {
         pri: ['Montserrat', 'sans-serif'],
         sec: ['Poppins', 'monospace'],
+      },
+
+      screens: {
+        maxmd: { max: "767px" },
+        maxxs: { max: "578px" },
+        xs: "384px",
       },
     },
   },
