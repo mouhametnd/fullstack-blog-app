@@ -14,8 +14,10 @@ export interface IBlogsSliceCaseReducers {
   setBlogs(a: IBlogsSlice, b: ISetBlogsAction): IBlogsSlice;
   appendBlogs(a: IBlogsSlice, b: ISetBlogsAction): IBlogsSlice;
   increasePage(a: IBlogsSlice, b: IIncreasePageAction): IBlogsSlice;
-  toggleBlogVote(a: IBlogsSlice, b: IToggleBlogVote): IBlogsSlice;
+  toggleBlogVote(a: IBlogsSlice, b: IToggleBlogVoteAction): IBlogsSlice;
   resetBlogs(a: IBlogsSlice, ): IBlogsSlice;
+  updateBlog(a: IBlogsSlice, b:IUpdateBlogAction): IBlogsSlice
+  
 }
 
 export interface ISetBlogsAction extends IBaseAction {
@@ -27,10 +29,18 @@ export interface ISetBlogsAction extends IBaseAction {
 export interface IIncreasePageAction extends IBaseAction {
   payload: TBlogsNames;
 }
-export interface IToggleBlogVote extends IBaseAction {
+export interface IToggleBlogVoteAction extends IBaseAction {
   payload: {
     blogsName: TBlogsNames;
     blogId: string;
     userId: string;
+  };
+}
+export interface IUpdateBlogAction extends IBaseAction {
+  payload: {
+    blogsName: TBlogsNames;
+    blogId: string;
+    newTitle: string
+    newDescription: string
   };
 }

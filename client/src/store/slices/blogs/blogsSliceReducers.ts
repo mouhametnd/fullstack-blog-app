@@ -41,3 +41,17 @@ export const toggleBlogVote: IBlogsSliceCaseReducers['toggleBlogVote'] = (state,
   updatedBlogs.splice(votedBlogIndex, 1, updatedBlog);
   return { ...state, [blogsName]: { currentPage, blogs: updatedBlogs } };
 };
+
+export const updateBlog: IBlogsSliceCaseReducers['updateBlog'] = (state, { payload }) => {
+  const { blogsName, blogId, newTitle, newDescription } = payload;
+  const blogs = [...state[blogsName].blogs!];
+  const updatedBlog = { ...blogs?.find(({ _id }) => _id === blogId)! };
+  const updatedBlogIndex = blogs?.findIndex(({ _id }) => _id === blogId)!;
+  
+  updatedBlog.title = newTitle;
+  updatedBlog.description = newDescription;
+  updatedBlog.lastUpdate = Date.now();
+  blogs?.splice(updatedBlogIndex, 1, updatedBlog);
+
+  return { ...state, [blogsName]: { ...state[blogsName], blogs } };
+};

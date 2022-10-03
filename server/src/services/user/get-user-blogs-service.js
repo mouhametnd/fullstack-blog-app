@@ -3,7 +3,7 @@ const { getCollection } = require('../../utils/get-collection');
 const { getQueryBlogs } = require('../../utils/get-query-blogs');
 const { getSortedBy } = require('../../utils/get-sorted-by');
 
-const getUserBlogsService = async ({ blogsToSend, blogsToSkip, username, sortBy }) => {
+const getUserBlogService = async ({ blogsToSend, blogsToSkip, username, sortBy }) => {
   try {
     const usersCollection = getCollection('users');
     const blogsCollection = getCollection('blogs');
@@ -21,5 +21,5 @@ const getUserBlogsService = async ({ blogsToSend, blogsToSkip, username, sortBy 
 };
 
 module.exports = {
-  getUserBlogsService,
+  getUserBlogService,
 };

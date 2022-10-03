@@ -1,13 +1,11 @@
-import React from 'react';
 import { API_BASE_URL } from '../../constants/globalConstants';
 import { IUseBlogsProps } from '../../hooks/useBlogs/useBlogsTypes';
 import useBlogsReq from '../../hooks/useBlogs/userBlogsReq';
 import useUser from '../../hooks/userUser';
-import NormalBlog from '../normalButton/NormalBlog';
-import LoadMoreButton from '../others/LoadMoreButton';
-import UserBlogs from '../userBlogs/UserBlogs';
+import LoadMoreButton from './LoadMoreButton';
+import UserBlog from '../userBlogs/UserBlog';
 
-const MyBlogs = () => {
+const UserBlogs = () => {
   const { user } = useUser();
   const userId = user._id;
 
@@ -23,7 +21,7 @@ const MyBlogs = () => {
     <>
       <section className="blogs-wrapper">
         {blogs.map(blog => (
-          <UserBlogs blog={blog} userId={userId} key={blog._id} toggleBlogVote={voteBlogReq} />
+          <UserBlog blog={blog} userId={userId} key={blog._id} toggleBlogVote={voteBlogReq} />
         ))}
       </section>
       {hasMoreBlogs && <LoadMoreButton handleClick={increasePage} />}
@@ -31,4 +29,4 @@ const MyBlogs = () => {
   );
 };
 
-export default MyBlogs;
+export default UserBlogs;

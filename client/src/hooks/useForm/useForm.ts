@@ -32,13 +32,12 @@ const useForm = (form: IUseFormProps) => {
       return { ...res.data };
     } catch (error: any) {
       setIsLoading(false);
-      console.log(error)
       setError({ msg: error.response.data.error || 'Error while submiting the form' });
       return { result: null };
     }
   };
 
-  return { isLoading, error, setFormValue, isFormValid, sendForm, resetFormState };
+  return { isLoading, error, setFormValue, isFormValid, sendForm, resetFormState, getFormValues };
 };
 
 export default useForm;

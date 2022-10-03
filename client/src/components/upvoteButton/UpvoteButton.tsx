@@ -3,14 +3,14 @@ import ArrowIcon from '../others/ArrowIcon';
 interface IProps {
   handleClick: () => unknown;
   total: number;
-  isVoted: boolean;
+  hasUserVoted: boolean;
 }
 
-const UpvoteButton = ({ handleClick, total, isVoted }: IProps) => {
+const UpvoteButton = ({ handleClick, total, hasUserVoted }: IProps) => {
   return (
     <button onClick={handleClick}
       className={` hover text-cyanGreen-100 transition-colors bg-cyanGreen-100/10  rounded-xl py-2 px-4 w-max h-max cursor-pointer upvote-button transition-opacity gap-3 flex flex-row ${
-        isVoted && 'bg-cyanGreen-100 text-white'
+        hasUserVoted && 'bg-cyanGreen-100 text-white'
       }`}
     >
       <ArrowIcon />

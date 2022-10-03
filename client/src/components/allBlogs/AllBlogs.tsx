@@ -2,7 +2,7 @@ import { API_BASE_URL } from '../../constants/globalConstants';
 import { IUseBlogsProps } from '../../hooks/useBlogs/useBlogsTypes';
 import useBlogsReq from '../../hooks/useBlogs/userBlogsReq';
 import useUser from '../../hooks/userUser';
-import NormalBlog from '../normalButton/NormalBlog';
+import NormalBlog from '../normalBLog/NormalBlog';
 import LoadMoreButton from '../others/LoadMoreButton';
 
 const useBlogProps: IUseBlogsProps = {

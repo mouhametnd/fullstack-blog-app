@@ -2,7 +2,7 @@ const { Router } = require('express');
 const { addgetBlogController } = require('../controllers/blogs/add-blog-controller');
 const { getBlogController } = require('../controllers/blogs/get-blog-controller');
 const { getBlogsController } = require('../controllers/blogs/get-blogs-controller');
-const { delgetBlogController } = require('../controllers/blogs/del-blog-controller');
+const { deleteBlogController } = require('../controllers/blogs/del-blog-controller');
 const { updateBlogDetailsController } = require('../controllers/blogs/update-blog-details-controller');
 const { blogDTOMiddleware } = require('../middlewares/blogs/blog-dto-middleware');
 const { checkBlogCreatorMiddleware } = require('../middlewares/blogs/check-blog-creator-middleware');
@@ -22,10 +22,10 @@ blogsRoute.use(CORSPrivateEndpointsMiddleware);
 blogsRoute.use(jwtVerifierMiddleware);
 blogsRoute.use(usernameValidatorMiddleware);
 blogsRoute.use(['/add', '/update/:blogId'], blogDTOMiddleware);
-blogsRoute.use(['/del/:blogId', '/update/:blogId'], checkBlogCreatorMiddleware);
+blogsRoute.use(['/delete/:blogId', '/update/:blogId'], checkBlogCreatorMiddleware);
 
 blogsRoute.post('/add', addgetBlogController);
-blogsRoute.delete('/del/:blogId', delgetBlogController);
+blogsRoute.delete('/delete/:blogId', deleteBlogController);
 blogsRoute.patch('/update/:blogId', updateBlogDetailsController);
 blogsRoute.patch('/vote/:blogId', updateBlogVotesMiddleware, updateBlogVotesController);
 

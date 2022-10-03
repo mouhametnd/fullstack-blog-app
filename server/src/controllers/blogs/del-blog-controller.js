@@ -1,7 +1,7 @@
 const { ObjectId } = require('mongodb');
 const { delBlogService } = require('../../services/blogs/del-blog-service');
 
-const delgetBlogController = async (req, res) => {
+const deleteBlogController = async (req, res) => {
   const { blogId } = req.params;
   const { username } = res.locals.verified.payload;
   const result = await delBlogService(ObjectId(blogId), username);
@@ -12,5 +12,5 @@ const delgetBlogController = async (req, res) => {
 };
 
 module.exports = {
-  delgetBlogController,
+  deleteBlogController,
 };

@@ -1,11 +1,13 @@
 import React, { ChangeEvent, FormEvent, useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { API_BASE_URL, baseFormValues, baseInputProps } from '../../constants/globalConstants';
 import useForm from '../../hooks/useForm/useForm';
 import { IUseFormProps } from '../../hooks/useForm/useFormTypes';
 import useUser from '../../hooks/userUser';
+import { blogsSliceActions } from '../../store/slices/blogs/blogsSlice';
 import { IBlog } from '../../types/types';
 import Loader from '../loader/Loader';
-import PenIcon from '../others/PenIcon';
+import PenIcon from './PenIcon';
 
 interface IProps {
   blog: IBlog;
@@ -18,9 +20,9 @@ const useFormArg: IUseFormProps = {
   formValues: { title, description },
   headers: {},
 };
-// todo it will render false to not show the form
-// todo it will be mounted and unmounted
-const UserBlogForm = ({ blog, reqEndpoint }: IProps) => {
+const { updateBlog } = blogsSliceActions;
+const UpdateBlogForm = ({ blog, reqEndpoint }: IProps) => {
+  const dispatch = useDispatch();
   const { title, description } = blog;
   const { user } = useUser();
   const { userToken } = user;
@@ -28,7 +30,7 @@ const UserBlogForm = ({ blog, reqEndpoint }: IProps) => {
   useFormArg.reqEndpoint = reqEndpoint;
 
   const [showForm, setShpwForm] = useState<boolean>(false);
-  const { error, isLoading, sendForm, setFormValue, resetFormState } = useForm(useFormArg);
+  const { error, isLoading, sendForm, setFormValue, resetFormState, getFormValues } = useForm(useFormArg);
 
   const hideForm = (e: FormEvent) => {
     e.preventDefault();
@@ -40,7 +42,8 @@ const UserBlogForm = ({ blog, reqEndpoint }: IProps) => {
     e.preventDefault();
     const { result } = await sendForm();
     if (!result) return;
-    // todo setAction
+    const { title, description } = getFormValues();
+    dispatch(updateBlog({blogId: blog._id,  blogsName:'userBlogs', newDescription: description!, newTitle: title!}))
     hideForm(e);
   };
 
@@ -57,13 +60,13 @@ const UserBlogForm = ({ blog, reqEndpoint }: IProps) => {
 
   if (!showForm)
     return (
-      <button onClick={() => setShpwForm(true)} className="absolute right-7 ">
+      <button onClick={() => setShpwForm(true)} className="w-max absolute right-16 ">
         <PenIcon />
       </button>
     );
 
   return (
-    <form className="flex flex-col gap-4 mb-6 ">
+    <form className="flex flex-col gap-4 mb-6 mt-3 ">
       {isLoading && <Loader />}
       {error.msg && <span className="form__error">{error.msg}</span>}
 
@@ -83,10 +86,10 @@ const UserBlogForm = ({ blog, reqEndpoint }: IProps) => {
       </div>
 
       <div className="flex flex-col  gap-2 justify-evenly sm:flex-row sm:gap-0">
-        <button onClick={hideForm} className="button text-white bg-red-100">
+        <button onClick={hideForm} className="button hover text-white bg-red-100">
           Cancel
         </button>
-        <button onClick={editBlog} className="button text-white bg-cyanGreen-200">
+        <button onClick={editBlog} className="button hover text-white bg-cyanGreen-200">
           Edit Blog
         </button>{' '}
       </div>
@@ -94,4 +97,4 @@ const UserBlogForm = ({ blog, reqEndpoint }: IProps) => {
   );
 };
 
-export default UserBlogForm;
+export default UpdateBlogForm;

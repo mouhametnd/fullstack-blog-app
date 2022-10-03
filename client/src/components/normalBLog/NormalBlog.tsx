@@ -1,7 +1,7 @@
 import { IBlog, IUser } from '../../types/types';
 import dateFormater from '../../utils/dateParser';
 import UpvoteButton from '../upvoteButton/UpvoteButton';
-import './normalButton.scss';
+import './normalBlog.scss';
 
 // todo continue with blogs
 // todo call date Converter fun
@@ -13,7 +13,7 @@ interface IProps {
 
 const NormalBlog = ({ blog, userId, toggleBlogVote }: IProps) => {
   const { description, lastUpdate, title, userCreator, votes } = blog;
-  const isBlogVoted = votes.likedUsers.includes(userId);
+  const hasUserVoted = votes.likedUsers.includes(userId);
 
   return (
     <article className="blog custom-shadow ">
@@ -30,9 +30,12 @@ const NormalBlog = ({ blog, userId, toggleBlogVote }: IProps) => {
       <div className="blog__cont-bottom">
         <span className="blog__creator-name">{userCreator.name}</span>
 
-        <UpvoteButton total={votes.total} isVoted={isBlogVoted} handleClick={() => toggleBlogVote({ userId, blogId: blog._id })} />
+        <UpvoteButton
+          total={votes.total}
+          hasUserVoted={hasUserVoted}
+          handleClick={() => toggleBlogVote({ userId, blogId: blog._id })}
+        />
       </div>
-
     </article>
   );
 };
