@@ -1,15 +1,12 @@
+import { AxiosRequestHeaders } from "axios";
+import { IUseFormValidationArg } from "../../types/types";
+
 export interface IUseFormProps {
   reqEndpoint: string;
   httpMethod: 'post' | 'put' | 'patch';
-  headers?: {};
+  headers: AxiosRequestHeaders
   successCb?: () => unknown;
   errorCb?: () => unknown;
-  formValues: {
-    [x: string]: {
-      name: string;
-      value: string;
-      regex: RegExp;
-    };
-  };
+  formValues: IUseFormValidationArg
 }
 export type TUseFormError = { msg: string } | { msg: false };

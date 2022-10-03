@@ -47,8 +47,8 @@ const UserBlogs = ({ blog, toggleBlogVote, userId }: IProps) => {
   if (blogsErrorMsg || !blogs) return <p className="blogs-error-msg">{blogsErrorMsg}</p>;
   // custom hook called useUserBlogsRrq that aswell use the useBlogsReq hooks
   return (
-    <article className="blog custom-shadow ">
-      <UserBlogForm blogId={blog._id} shouldShowUp={shouldDisplayForm} successCb={succesCb} />
+    <article className="blog custom-shadow relative">
+      <UserBlogForm blog={blog} reqEndpoint={`${API_BASE_URL}/blogs/update/${blog._id}`} />
 
       <div className="blog__cont-title">
         <h3 className="blog__title">{title}</h3>

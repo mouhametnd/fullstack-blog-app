@@ -53,10 +53,17 @@ export interface IFormInputProps {
   autoComplete: 'on' | 'off';
 }
 
-
 export interface IForm {
   inputs: IFormInputProps[];
   handleBlur(a: string): () => unknown;
   handleSubmit(): unknown;
   error: string | false;
+}
+
+export interface IUseFormValidationArg {
+  [x: string]: {
+    name: string;
+    value: string;
+    regex: RegExp;
+  };
 }

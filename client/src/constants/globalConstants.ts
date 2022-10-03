@@ -32,7 +32,7 @@ export const baseInputProps = {
     autoComplete: 'off',
     id: 'title',
     name: 'title',
-    pattern: '[.]{3,}.*',
+    pattern: '.{3,}.*',
     placeholder: 'Blog title',
     type: 'text',
   },
@@ -41,7 +41,8 @@ export const baseInputProps = {
     autoComplete: 'off',
     id: 'description',
     name: 'description',
-    pattern: '[.]{3,}.*',
+    pattern: '.{3,}.*',
+    minLength: 3,
     placeholder: 'Blog description',
     type: 'text',
   },
@@ -66,12 +67,12 @@ export const baseFormValues = {
   },
   description: {
     name: 'description',
-    regex: /^[.]{3,}.*$/,
+    regex: /^.{3,}.*$/,
     value: '',
   },
   title: {
     name: 'title',
-    regex: /^[.]{3,}.*$/,
+    regex: /^.{3,}.*$/,
     value: '',
   },
 };
