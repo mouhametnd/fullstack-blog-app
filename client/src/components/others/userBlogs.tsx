@@ -8,7 +8,6 @@ import UserBlog from '../userBlogs/UserBlog';
 const UserBlogs = () => {
   const { user } = useUser();
   const userId = user._id;
-
   const useBlogProps: IUseBlogsProps = {
     blogsName: 'userBlogs',
     reqEndpoint: `${API_BASE_URL}/user/blogs`,

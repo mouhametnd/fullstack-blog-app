@@ -6,7 +6,7 @@ const createUserToken = async (username, name) => {
   const jwt = await JWTConstructor.setProtectedHeader({ alg: 'HS256', typ: 'JWT' })
     .setIssuedAt()
     // todo change to 1h
-    .setExpirationTime('5h')
+    .setExpirationTime('1d')
     .sign(textEncoder.encode(process.env.JWT_PRIVATE_KEY));
 
   return jwt;

@@ -1,7 +1,7 @@
 import { Routes, Route, Outlet, Navigate } from 'react-router-dom';
 import AllBlogs from '../components/allBlogs/AllBlogs';
-import Dashboard from '../components/dashboard/Dashboard';
 import Home from '../components/home/Home';
+import Dashboard from '../components/others/Dashboard';
 import UserBlogs from '../components/others/UserBlogs';
 import { isAuthen } from '../utils/isAuthen';
 const PrivateRoutes = () => {

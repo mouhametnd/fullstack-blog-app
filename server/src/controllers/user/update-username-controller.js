@@ -3,9 +3,8 @@ const { updateUsernameService } = require('../../services/user/update-username-s
 const { createUserToken } = require('../../utils/create-user-token');
 
 const updateUsernameController = async (req, res) => {
-  const { newUsername } = req.body;
   const { username, name } = res.locals.verified.payload;
-
+const newUsername = req.body.username
   const [usernameResult, blogsUserCreatorResult, newUserToken] = await Promise.all([
     updateUsernameService({ newUsername, username }),
     updateBlogsUserCreatorService({ newUsername, username }),
@@ -18,7 +17,9 @@ const updateUsernameController = async (req, res) => {
     return;
   }
 
-  res.json({ result: { newUserToken } });
+  res.json(
+    { result: { newUserToken, newUsername: usernameResult.result, mgs: 'username updated successfully' } 
+  });
 };
 
 module.exports = {

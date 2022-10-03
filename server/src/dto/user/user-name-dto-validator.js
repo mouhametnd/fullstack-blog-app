@@ -4,7 +4,7 @@ const addErrors = require('ajv-errors');
 const ajv = new Ajv({ allErrors: true });
 addErrors(ajv);
 const userNameSchema = Type.Object({
-  newName: Type.String({
+  name: Type.String({
     minLength: 3,
   }),
 });

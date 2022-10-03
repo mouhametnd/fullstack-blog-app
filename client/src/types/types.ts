@@ -1,3 +1,4 @@
+import { baseInputProps } from '../constants/globalConstants';
 import { IBlogsSlice } from '../store/slices/blogs/blogsSliceTypes';
 import { ISearchParamsSlice } from '../store/slices/searchParams/searchParamsTypes';
 import { TUserSlice } from '../store/slices/user/userSliceTypes';
@@ -67,3 +68,5 @@ export interface IUseFormValidationArg {
     regex: RegExp;
   };
 }
+
+export type TBaseInputPropsUnion = keyof typeof baseInputProps

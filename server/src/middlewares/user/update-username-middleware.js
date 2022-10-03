@@ -5,9 +5,8 @@ const { invalidDTOSender } = require('../../utils/invalid-dto-sender');
 const updateUsernameMiddleware = async (req, res, next) => {
   try {
     if (!usernameDTOValidator(req.body)) return invalidDTOSender(res);
-
     const { username } = res.locals.verified.payload;
-    const { newUsername } = req.body;
+    const  newUsername  = req.body.username;
 
     if (username === newUsername) {
       res.status(400);

@@ -15,7 +15,7 @@ const NavBar = ({handleLinkClick}:INavBarTypes) => {
       <NavLink onClick={handleLinkClick} className={highlither} to="/my-blogs">
         My Blogs
       </NavLink>
-      <NavLink onClick={handleLinkClick} className={highlither} to="/dashboad">
+      <NavLink onClick={handleLinkClick} className={highlither} to="/dashboard">
         Dashboard
       </NavLink>
     </nav>

@@ -29,13 +29,13 @@ const UpdateBlogForm = ({ blog, reqEndpoint }: IProps) => {
   useFormArg.headers['Authorization'] = userToken;
   useFormArg.reqEndpoint = reqEndpoint;
 
-  const [showForm, setShpwForm] = useState<boolean>(false);
+  const [showForm, setShowForm] = useState<boolean>(false);
   const { error, isLoading, sendForm, setFormValue, resetFormState, getFormValues } = useForm(useFormArg);
 
   const hideForm = (e: FormEvent) => {
     e.preventDefault();
     resetFormState();
-    setShpwForm(false);
+    setShowForm(false);
   };
 
   const editBlog = async (e: FormEvent) => {
@@ -60,7 +60,7 @@ const UpdateBlogForm = ({ blog, reqEndpoint }: IProps) => {
 
   if (!showForm)
     return (
-      <button onClick={() => setShpwForm(true)} className="w-max absolute right-16 ">
+      <button onClick={() => setShowForm(true)} className="w-max absolute right-16 ">
         <PenIcon />
       </button>
     );

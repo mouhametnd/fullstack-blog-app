@@ -2,12 +2,12 @@ const { updateBlogsUserCreatorService } = require('../../services/blogs/update-b
 const { updateUserNameService } = require('../../services/user/update-user-name-service');
 
 const updateUserNameController = async (req, res) => {
-  const { newName } = req.body;
+  const { name } = req.body;
   const { username } = res.locals.verified.payload;
 
   const [userNameResult, blogUserCreatorResult] = await Promise.all([
-    updateUserNameService({ newName, username }),
-    updateBlogsUserCreatorService({ newName, username }),
+    updateUserNameService({ newName: name, username }),
+    updateBlogsUserCreatorService({ newName: name, username }),
   ]);
 
   if (userNameResult.error || blogUserCreatorResult.error) {

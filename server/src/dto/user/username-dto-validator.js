@@ -6,7 +6,7 @@ const ajv = new Ajv({ allErrors: true });
 addErrors(ajv);
 
 const usernameSchema = Type.Object({
-  newUsername: Type.String({
+  username: Type.String({
     pattern: ajvRegex.username,
   }),
 

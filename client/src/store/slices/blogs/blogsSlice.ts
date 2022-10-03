@@ -8,10 +8,6 @@ const initialState: IBlogsSlice = {
     blogs: null,
     currentPage: 1,
   },
-  dashboardBlogs: {
-    blogs: null,
-    currentPage: 1,
-  },
   userBlogs: {
     blogs: null,
     currentPage: 1,

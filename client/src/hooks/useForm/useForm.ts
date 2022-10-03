@@ -5,7 +5,6 @@ import formValidation from '../../utils/formValidation';
 
 const useForm = (form: IUseFormProps) => {
   const { formValues, reqEndpoint, httpMethod, headers } = form;
-
   const { getFormValues, isFormValid, setFormValue, resetFormValidation } = formValidation(formValues);
 
   const [isLoading, setIsLoading] = useState<null | boolean>(null);
@@ -18,7 +17,9 @@ const useForm = (form: IUseFormProps) => {
   };
 
   const sendForm = async () => {
+    console.log(formValues)
     if (!isFormValid()) {
+      console.log('ww')
       setError({ msg: 'Form fields invalid' });
       return { result: null };
     }

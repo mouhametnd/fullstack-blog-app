@@ -1,6 +1,6 @@
 import { IBaseAction, IBlog } from '../../../types/types';
 
-export type TBlogsNames = 'allBlogs' | 'userBlogs' | 'dashboardBlogs';
+export type TBlogsNames = 'allBlogs' | 'userBlogs' ;
 
 export type IBlogsSlice = {
   [Key in TBlogsNames]: {
