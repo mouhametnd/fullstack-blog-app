@@ -4,14 +4,14 @@ import { API_BASE_URL } from '../../constants/globalConstants';
 import useUser from '../../hooks/userUser';
 import { userSliceActions } from '../../store/slices/user/userSlice';
 import EditUserDetailForm from './EditUserDetailForm';
-const { updateUserDetail } = userSliceActions;
+const { updateUserProp } = userSliceActions;
 const EditUserName = () => {
   const dispatch = useDispatch();
   const { user } = useUser();
   const { userToken, name } = user;
 
   const successCb = ({ newName }: { newName: string }) =>
-    dispatch(updateUserDetail({ newValue: newName, propName: 'name' }));
+    dispatch(updateUserProp({ newValue: newName, propName: 'name' }));
 
   return (
     <EditUserDetailForm

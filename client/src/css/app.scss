@@ -39,8 +39,13 @@ body {
 .form {
   @apply w-[89%] max-w-xs m-auto  bg-white p-8 rounded-lg flex flex-col gap-1;
 
-  & button {
-    @apply bg-cyanGreen-300 w-max  mx-auto  text-gray-200;
+  & .btn {
+    &-submit {
+      @apply bg-cyanGreen-300 w-max  mx-auto  text-gray-200;
+    }
+    &-guest {
+      @apply bg-white w-max  mx-auto  border-2 border-cyanGreen-100 text-cyanGreen-100;
+    }
   }
 
   &__title {
@@ -91,26 +96,22 @@ body {
   }
 }
 
-
-
 .button {
   @apply py-1.5 px-7 rounded-xl font-medium;
 }
-
 
 .blogs {
   &-wrapper {
     @apply flex flex-col gap-9 px-4 pt-10 mb-8;
     @media screen and (min-width: 384px) {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(384px, 1fr));
-    } 
+      grid-template-columns: repeat(auto-fill, minmax(384px, 1fr));
+    }
   }
   &-error-msg {
     @apply text-red-100 text-center font-semibold py-5;
   }
 }
-
 
 .hover {
   transition: 0.2s linear opacity;

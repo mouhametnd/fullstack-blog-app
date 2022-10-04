@@ -42,7 +42,7 @@ const useForm = (form: IUseFormProps) => {
     }
   };
 
-  return { isLoading, error, setFormValue, isFormValid, sendForm };
+  return { isLoading, error, setFormValue, isFormValid, sendForm , };
 };
 
 export default useForm;

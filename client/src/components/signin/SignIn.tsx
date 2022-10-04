@@ -5,7 +5,7 @@ import { signInUseFormProps } from './signInConstants';
 import { ChangeEvent, FormEvent } from 'react';
 import Loader from '../loader/Loader';
 import { useAuthen } from '../../hooks/useAuthen';
-import { TLoginSigninResponse } from '../../types/types';
+import generateGuestAccount from '../../utils/generateGuestAccount';
 
 const SignIn = () => {
   const { authenticator } = useAuthen();
@@ -13,20 +13,28 @@ const SignIn = () => {
 
   const handleBlur = (name: string) => (e: ChangeEvent<HTMLInputElement>) => setFormValue(name, e.target.value);
 
-  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    const response = (await sendForm()) as TLoginSigninResponse;
-    if (response?.userToken) {
-      authenticator(response);
+    const { result } = await sendForm();
+    if (result) {
+      authenticator(result);
       (e.target as HTMLFormElement).reset();
     }
+  };
+
+  const handleSubmitGuestAccount = (e: FormEvent) => {
+    const [name,username, passowrd] = generateGuestAccount();
+    setFormValue(baseInputProps.name.name, name!);
+    setFormValue(baseInputProps.username.name, username!);
+    setFormValue(baseInputProps.password.name, passowrd!);
+    handleSubmit(e);
   };
 
   return (
     <section className="form-wrapper">
       {isLoading && <Loader />}
 
-      <form className="form" onSubmit={handleSubmit}>
+      <form className="form">
         <h1 className="form__title">Sign In</h1>
 
         {error.msg && <span className="form__error">{error.msg}</span>}
@@ -36,19 +44,27 @@ const SignIn = () => {
             <label className="form__label" htmlFor="name">
               Name
             </label>
-            <input className="form__input" {...baseInputProps.name} onBlur={handleBlur(baseInputProps.name.name)}  />
+            <input className="form__input" {...baseInputProps.name} onBlur={handleBlur(baseInputProps.name.name)} />
           </div>
           <div className="form__cont-input">
             <label className="form__label" htmlFor="username">
               username
             </label>
-            <input className="form__input" {...baseInputProps.username} onBlur={handleBlur(baseInputProps.username.name)} />
+            <input
+              className="form__input"
+              {...baseInputProps.username}
+              onBlur={handleBlur(baseInputProps.username.name)}
+            />
           </div>
           <div className="form__cont-input">
             <label className="form__label" htmlFor="password">
               Passowrd
             </label>
-            <input className="form__input" {...baseInputProps.password} onBlur={handleBlur(baseInputProps.password.name)} />
+            <input
+              className="form__input"
+              {...baseInputProps.password}
+              onBlur={handleBlur(baseInputProps.password.name)}
+            />
           </div>
 
           <p className="form__text">
@@ -56,7 +72,12 @@ const SignIn = () => {
             <Link to={'/log-in'}>Log in now</Link>
           </p>
 
-          <button className="button hover">Submit</button>
+          <button onClick={handleSubmit} className="button btn-submit hover">
+            Submit
+          </button>
+          <button onClick={handleSubmitGuestAccount} className="button hover btn-guest  bg-white">
+            Use guest account
+          </button>
         </div>
       </form>
     </section>

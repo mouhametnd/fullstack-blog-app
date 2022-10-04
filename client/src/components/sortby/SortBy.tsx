@@ -6,14 +6,14 @@ import { TSortByValues } from '../../types/types';
 import CustomSelect from '../customSelect/CustomSelect';
 import { ISelectOption } from '../customSelect/customSelectTypes';
 
-const { resetBlogs } = blogsSliceActions;
+const { resetBlogsState } = blogsSliceActions;
 const { setSortBy } = searchParamsSliceActions;
 const SortBy = () => {
   const dispath = useDispatch();
 
   const clickHandler = ({ value }: ISelectOption) => {
     dispath(setSortBy(value as TSortByValues));
-    dispath(resetBlogs());
+    dispath(resetBlogsState());
   };
   return <CustomSelect title="Sort by" selectOptions={sortByOptions} optionClickHandler={clickHandler} />;
 };

@@ -16,6 +16,8 @@ const UserBlogs = () => {
   const { blogs, blogsErrorMsg, hasMoreBlogs, increasePage, voteBlogReq } = useBlogsReq(useBlogProps);
   
   if (blogsErrorMsg || !blogs) return <p className="blogs-error-msg">{blogsErrorMsg}</p>;
+  
+  const shouldDisplayButton = hasMoreBlogs && blogs.length !== 0;
   return (
     <>
       <section className="blogs-wrapper">
@@ -23,7 +25,8 @@ const UserBlogs = () => {
           <UserBlog blog={blog} userId={userId} key={blog._id} toggleBlogVote={voteBlogReq} />
         ))}
       </section>
-      {hasMoreBlogs && <LoadMoreButton handleClick={increasePage} />}
+      {blogs.length || <p className="blogs-error-msg"> No blogs found</p>}
+      {shouldDisplayButton && <LoadMoreButton handleClick={increasePage} />}
     </>
   );
 };

@@ -5,7 +5,7 @@ import useUser from '../../hooks/userUser';
 import { userSliceActions } from '../../store/slices/user/userSlice';
 import EditUserDetailForm from './EditUserDetailForm';
 
-const { updateUserDetail } = userSliceActions;
+const { updateUserProp } = userSliceActions;
 
 const EditUserUsername = () => {
   const dispatch = useDispatch();
@@ -13,8 +13,8 @@ const EditUserUsername = () => {
   const { userToken, username } = user;
 
   const successCb = ({ newUserToken, newUsername }: { newUserToken: string; newUsername: string }) => {
-    dispatch(updateUserDetail({ newValue: newUserToken, propName: 'userToken' }));
-    dispatch(updateUserDetail({ newValue: newUsername, propName: 'username' }));
+    dispatch(updateUserProp({ newValue: newUserToken, propName: 'userToken' }));
+    dispatch(updateUserProp({ newValue: newUsername, propName: 'username' }));
   };
 
   return (

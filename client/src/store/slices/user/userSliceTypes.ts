@@ -1,11 +1,12 @@
-import { IUser } from '../../../types/types';
+import { IBaseAction, IUser } from '../../../types/types';
 
 export type TUserSlice = (IUser & { userToken: string }) | null;
 
 export interface IUserSliceCaseReducers {
   [x: string]: (state: TUserSlice, action: { type: string; payload: any }) => TUserSlice;
   setUser(a: TUserSlice, b: ISetUserAction): TUserSlice;
-  updateUserDetail(a: TUserSlice, b: IUpdateUserNameAction): TUserSlice;
+  updateUserProp(a: TUserSlice, b: IUpdateUserNameAction): TUserSlice;
+  resetUserState(a:TUserSlice, b:IBaseAction):null
 }
 
 export interface ISetUserAction {

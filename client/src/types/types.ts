@@ -35,7 +35,6 @@ export type IStore = {
   blogs: IBlogsSlice;
 };
 
-export type TLoginSigninResponse = TUserSlice | { userToken: null };
 
 export type TSortByValues = 'random' | 'newest' | 'latest' | 'mostVoted' | 'lessVoted' | 'title';
 export type TPerPageValues = '5' | '10' | '15' | '20';

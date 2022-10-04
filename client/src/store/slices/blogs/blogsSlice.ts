@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { IBlog } from '../../../types/types';
-import { appendBlogs, increasePage, setBlogs, toggleBlogVote, updateBlog } from './blogsSliceReducers';
+import { addBlog, appendBlogs, increasePage, setBlogs, toggleBlogVote, updateBlog } from './blogsSliceReducers';
 import { IBlogsSlice, IBlogsSliceCaseReducers } from './blogsSliceTypes';
 
 const initialState: IBlogsSlice = {
@@ -23,7 +23,8 @@ const blogsSlice = createSlice<IBlogsSlice, IBlogsSliceCaseReducers>({
     increasePage,
     toggleBlogVote,
     updateBlog,
-    resetBlogs() {
+    addBlog,
+    resetBlogsState() {
       return initialState;
     },
   },

@@ -1,6 +1,22 @@
-import React from 'react';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router';
+import { blogsSliceActions } from '../../store/slices/blogs/blogsSlice';
+import { userSliceActions } from '../../store/slices/user/userSlice';
 
-// todo call logout func
-const LogOutButton = () => <button className="button hover bg-cyanGreen-100  text-white  mx-auto h-11  max-w-[120px]">Log out</button>;
+const { resetBlogsState } = blogsSliceActions;
+const { resetUserState } = userSliceActions;
+const LogOutButton = () => {
+  const dispatch = useDispatch();
+  const navigator = useNavigate();
+
+  const logout = () => {
+    dispatch(resetBlogsState);
+    dispatch(resetUserState);
+    localStorage.clear();
+    navigator('/log-in');
+  };
+
+  return <button onClick={logout} className="button hover bg-cyanGreen-100  text-white  mx-auto h-11  max-w-[120px]">Log out</button>;
+};
 
 export default LogOutButton;

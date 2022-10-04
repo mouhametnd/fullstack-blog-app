@@ -9,7 +9,7 @@ export const setBlogs: IBlogsSliceCaseReducers['setBlogs'] = (state, { payload }
 export const appendBlogs: IBlogsSliceCaseReducers['appendBlogs'] = (state, { payload }) => {
   const { blogs, blogsName } = payload;
   const blogsPart = state[blogsName];
-  const appendedBlogs = [...blogsPart.blogs!, ...blogs];
+  const appendedBlogs = [...blogsPart.blogs, ...blogs];
   return { ...state, [blogsName]: { ...blogsPart, blogs: appendedBlogs } };
 };
 
@@ -37,21 +37,34 @@ export const toggleBlogVote: IBlogsSliceCaseReducers['toggleBlogVote'] = (state,
     likedUsers.push(userId);
   }
   const updatedBlog = { ...votedBlog, votes: { total, likedUsers } };
-  const updatedBlogs = [...blogs!];
+  const updatedBlogs = [...blogs];
   updatedBlogs.splice(votedBlogIndex, 1, updatedBlog);
   return { ...state, [blogsName]: { currentPage, blogs: updatedBlogs } };
 };
 
 export const updateBlog: IBlogsSliceCaseReducers['updateBlog'] = (state, { payload }) => {
   const { blogsName, blogId, newTitle, newDescription } = payload;
-  const blogs = [...state[blogsName].blogs!];
+  const blogs = [...state[blogsName].blogs];
   const updatedBlog = { ...blogs?.find(({ _id }) => _id === blogId)! };
   const updatedBlogIndex = blogs?.findIndex(({ _id }) => _id === blogId)!;
-  
+
   updatedBlog.title = newTitle;
   updatedBlog.description = newDescription;
   updatedBlog.lastUpdate = Date.now();
   blogs?.splice(updatedBlogIndex, 1, updatedBlog);
 
   return { ...state, [blogsName]: { ...state[blogsName], blogs } };
+};
+
+export const addBlog: IBlogsSliceCaseReducers['addBlog'] = (state, { payload }) => {
+  const allBlogs = state['allBlogs'];
+  const userBlogs = state['userBlogs'];
+  const allBlogsUpdated = [...allBlogs.blogs, payload];
+  const userBlogsUpdated = [...userBlogs.blogs, payload];
+
+  return {
+    ...state,
+    allBlogs: { ...allBlogs, blogs: allBlogsUpdated },
+    userBlogs: { ...userBlogs, blogs: userBlogsUpdated },
+  };
 };
