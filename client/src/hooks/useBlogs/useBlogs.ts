@@ -2,13 +2,10 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
-import { useStore } from 'react-redux';
-import { API_BASE_URL } from '../../constants/globalConstants';
 import { blogsSliceActions } from '../../store/slices/blogs/blogsSlice';
-import { IBlogsSlice, TBlogsNames } from '../../store/slices/blogs/blogsSliceTypes';
-import { IBlog, IStore } from '../../types/types';
+import { IBlogsSlice } from '../../store/slices/blogs/blogsSliceTypes';
+import { IStore, IUseBlogsProps } from '../../types';
 import useSearchParams from '../useSearchParams';
-import { IUseBlogsProps } from './useBlogsTypes';
 
 const useBlogs = ({ blogsName, reqEndpoint, headers }: IUseBlogsProps) => {
   const [error, setError] = useState<string | false>();
@@ -17,39 +14,24 @@ const useBlogs = ({ blogsName, reqEndpoint, headers }: IUseBlogsProps) => {
   const { searchParams } = useSearchParams();
   const { blogs, currentPage } = useSelector<IStore, IBlogsSlice['allBlogs']>(state => state.blogs[blogsName]);
 
-  // todo change funcs names
-  // todo pass seBlogs & appendBlogs things into a function
-  const setBlogs = async () => {
+  const fetchBlogs = async (actionName: 'setBlogs' | 'appendBlogs') => {
     try {
       const regConfig = {
         headers,
-        params: { ...searchParams, page: currentPage, perPage: '2' },
+        params: { ...searchParams, page: currentPage },
       };
       const { data } = await axios.get(reqEndpoint, regConfig);
-      if (!data.result.length) setHasMoreBlogs(false);
 
-      dispatch(blogsSliceActions.setBlogs({ blogsName, blogs: data.result }));
+      dispatch(blogsSliceActions[actionName]({ blogsName, blogs: data.result }));
       setError(false);
+      if (actionName === 'setBlogs' && !data.result.length) setHasMoreBlogs(false);
     } catch (error) {
       setError('error fetching blogs');
     }
   };
 
-  const appendBlogs = async () => {
-    try {
-      const regConfig = {
-        headers,
-        params: { ...searchParams, page: currentPage, perPage: '2' },
-      };
-      const { data } = await axios.get(reqEndpoint, regConfig);
-
-      dispatch(blogsSliceActions.appendBlogs({ blogsName, blogs: data.result }));
-      setError(false);
-    } catch (error) {
-      setError('error fetching blogs');
-    }
-  };
-
+  const setBlogs = () => fetchBlogs('setBlogs');
+  const appendBlogs = () => fetchBlogs('appendBlogs');
   const increasePage = () => dispatch(blogsSliceActions.increasePage(blogsName));
 
   useEffect(() => {

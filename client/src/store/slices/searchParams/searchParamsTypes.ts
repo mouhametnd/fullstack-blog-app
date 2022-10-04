@@ -1,4 +1,4 @@
-import { IBaseAction, TPerPageValues, TSortByValues } from '../../../types/types';
+import { IBaseAction, TPerPageValues, TSortByValues } from '../../../types';
 
 export interface ISearchParamsSlice {
   sortBy: TSortByValues;

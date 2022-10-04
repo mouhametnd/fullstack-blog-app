@@ -9,7 +9,6 @@ const usernameValidatorMiddleware = async (_, res, next) => {
     const [user] = await usersCollection.find({ username }).project(userProjectedProps).toArray();
 
     if (!user) return unauthorizedSender(res);
-
     res.locals.user = user;
     next();
   } catch (err) {

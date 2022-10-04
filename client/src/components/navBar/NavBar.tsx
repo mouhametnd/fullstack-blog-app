@@ -1,23 +1,20 @@
-import React from 'react';
 import { NavLink } from 'react-router-dom';
+import { pageLinks } from '../../constants';
 import highlightActiveLink from '../../utils/highlightActiveLink,';
 import './navBar.scss';
-import { INavBarTypes } from './navBarTypes';
 
-const NavBar = ({handleLinkClick}:INavBarTypes) => {
-  const highlither = highlightActiveLink('navbar__a', 'navbar__a navbar__a--active')
+interface Iprops {
+  handleLinkClick: () => unknown;
+}
+
+const NavBar = ({ handleLinkClick }: Iprops) => {
+  const highlither = highlightActiveLink('navbar__a', 'navbar__a navbar__a--active');
 
   return (
     <nav className="navbar">
-      <NavLink onClick={handleLinkClick} className={highlither} to="/all-blogs">
-        All Blogs
-      </NavLink>
-      <NavLink onClick={handleLinkClick} className={highlither} to="/my-blogs">
-        My Blogs
-      </NavLink>
-      <NavLink onClick={handleLinkClick} className={highlither} to="/dashboard">
-        Dashboard
-      </NavLink>
+      {pageLinks.map(({ title, link }) => (
+        <NavLink onClick={handleLinkClick} className={highlither} children={title} to={`/${link}`} />
+      ))}
     </nav>
   );
 };

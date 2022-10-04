@@ -3,7 +3,6 @@ const { createUserToken } = require('../../utils/create-user-token');
 const logInController = async (_, res) => {
   const { name, username } = res.locals.user;
   const userToken = await createUserToken(username, name);
-  console.log('mm')
   res.json({
     result: {
       ...res.locals.user,

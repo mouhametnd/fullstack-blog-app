@@ -1,4 +1,4 @@
-import { IBaseAction, IUser } from '../../../types/types';
+import { IBaseAction, IUser } from '../../../types';
 
 export type TUserSlice = (IUser & { userToken: string }) | null;
 

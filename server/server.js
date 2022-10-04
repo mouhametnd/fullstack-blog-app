@@ -9,7 +9,7 @@ const { userRoute } = require('./src/routes/user-route');
 dotenv.config({
   path: '.env',
 });
-console.clear();
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 

@@ -1,8 +1,8 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
-import AllBlogs from '../components/allBlogs/AllBlogs';
-import Home from '../components/home/Home';
-import Dashboard from '../components/others/Dashboard';
-import UserBlogs from '../components/others/userBlogs';
+import AllBlogs from '../components/outlets/AllBlogs';
+import Home from '../components/others/Home';
+import Dashboard from '../components/outlets/Dashboard';
+import UserBlogs from '../components/outlets/UserBlogs';
 import { isAuthen } from '../utils/isAuthen';
 const PrivateRoutes = () => {
   if (!isAuthen()) return <Navigate to="/sign-in" />;

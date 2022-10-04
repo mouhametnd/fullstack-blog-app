@@ -1,0 +1,61 @@
+.form {
+  @apply w-[89%] max-w-xs m-auto  bg-white p-8 rounded-lg flex flex-col gap-1;
+
+  &-wrapper {
+    @apply h-screen flex bg-bodyBg;
+  }
+
+  &__title {
+    @apply font-medium text-lg text-gray-100 mb-4;
+  }
+
+  &__error {
+    @apply text-red-100 text-sm text-center;
+  }
+
+  &__cont-main {
+    @apply flex flex-col gap-7;
+  }
+
+  &__cont-input {
+    @apply flex flex-col;
+  }
+  &__cont-buttons {
+    @apply flex flex-col  gap-2 justify-evenly sm:flex-row sm:gap-0;
+  }
+
+  &__label {
+    @apply text-cyanGreen-100 text-sm font-pri;
+  }
+
+  &__input {
+    @apply outline-none border-b-2  h-7 rounded-md  py-6  text-sm text-gray-100;
+
+    &:valid {
+      @apply border-cyanGreen-100;
+    }
+    &:invalid {
+      @apply border-red-400;
+    }
+
+    &:placeholder-shown {
+      @apply border-gray-100;
+    }
+
+    &::placeholder {
+      @apply text-sm text-gray-100;
+    }
+  }
+
+  &__textarea {
+    @apply bg-transparent h-20 resize-none;
+  }
+
+  &__text {
+    @apply text-gray-200 text-sm text-center;
+
+    & a {
+      @apply pl-1.5 text-sm text-cyanGreen-100;
+    }
+  }
+}

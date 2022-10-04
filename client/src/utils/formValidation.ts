@@ -1,5 +1,4 @@
-import { logInUseFormProps } from '../components/login/logInConstans';
-import { IUseFormValidationArg } from '../types/types';
+import { IUseFormValidationArg } from '../types';
 
 const formValidation = (formValues: IUseFormValidationArg) => {
   const setFormValue = (name: string, newValue: string) => {
@@ -25,9 +24,7 @@ const formValidation = (formValues: IUseFormValidationArg) => {
   const resetFormValidation = (newFormValues: IUseFormValidationArg) => {
     formValues = newFormValues;
   };
-
-  {
-  }
+  
   return { setFormValue, isFormValid, getFormValues, resetFormValidation };
 };
 

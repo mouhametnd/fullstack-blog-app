@@ -1,10 +1,8 @@
-import { IBlog, IUser } from '../../types/types';
+import { IBlog, IUser } from '../../types';
 import dateFormater from '../../utils/dateParser';
-import UpvoteButton from '../upvoteButton/UpvoteButton';
+import UpvoteButton from '../others/UpvoteButton';
 import './normalBlog.scss';
 
-// todo continue with blogs
-// todo call date Converter fun
 interface IProps {
   blog: IBlog;
   userId: IUser['_id'];
@@ -33,7 +31,7 @@ const NormalBlog = ({ blog, userId, toggleBlogVote }: IProps) => {
         <UpvoteButton
           total={votes.total}
           hasUserVoted={hasUserVoted}
-          handleClick={() => toggleBlogVote({ userId, blogId: blog._id })}
+          handleClick={() => toggleBlogVote({ blogId: blog._id })}
         />
       </div>
     </article>

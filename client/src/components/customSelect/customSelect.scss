@@ -2,9 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
+.span {
+  &-title{
+    @apply flex  gap-1  cursor-pointer text-gray-100;
+  }
+
+  &-value{
+    @apply font-semibold  text-cyanGreen-100;
+  }
+}
 
 .cont-options {
-  @apply  bg-white rounded-xl flex flex-col divide-y-[2px] divide-[#2221]  border-solid z-20 w-max absolute top-10;
+  @apply bg-white rounded-xl flex flex-col divide-y-[2px] divide-[#2221]  border-solid z-20 w-max absolute top-10;
   clip-path: inset(0 0 100% 0);
   opacity: 0;
   transition: clip-path 0.3s ease-in-out, opacity 0.3s ease-in-out;
@@ -16,24 +25,25 @@
     pointer-events: all;
   }
 
+
+
   &__option {
-    @apply transition-colors px-6 py-[14px] pr-16 relative  cursor-pointer text-gray-100  font-normal;
+    @apply transition-colors px-6 py-[14px] pr-16 relative text-gray-100  font-normal cursor-pointer flex gap-2;
 
-    
-        & svg {
-          @apply opacity-0 transition-opacity;
-        }
+    & svg {
+      @apply opacity-0 transition-opacity;
+    }
 
-    &--active{
+    &--active {
       @apply text-cyanGreen-100;
 
-      & svg{
+      & svg {
         @apply opacity-100;
       }
     }
 
     & span {
-      @apply  text-base tracking-wide ;
+      @apply text-base tracking-wide;
     }
   }
 }

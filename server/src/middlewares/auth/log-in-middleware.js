@@ -10,7 +10,6 @@ const logInMiddleware = async (req, res, next) => {
 
   const usersCollection = getCollection('users');
   const isUserRegistered = await usersCollection.findOne({ username: body.username });
-  console.log(isUserRegistered)
   if (!isUserRegistered) return wrongCredentialsSender(res);
 
   const arePwdsSame = await bcrypt.compare(body.password, isUserRegistered.password);

@@ -1,7 +1,11 @@
 import './hamburger.scss';
-import { IHambugerProps } from './hamburgerTypes';
 
-const Hamburger = ({ handleClick, isActive }: IHambugerProps) => {
+interface IProps {
+  handleClick: () => unknown;
+  isActive: boolean;
+}
+
+const Hamburger = ({ handleClick, isActive }: IProps) => {
   return (
     <div className="hover relative z-20">
       <button

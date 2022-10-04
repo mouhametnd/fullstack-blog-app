@@ -1,13 +1,7 @@
-import './css/normalize.css';
-import './css/app.scss';
+import './styles/normalize.css';
+import './styles/app.scss';
 import RoutesComponent from './routes/RoutesComponent';
 
-function App() {
-  return (
-    <>
-      <RoutesComponent></RoutesComponent>
-    </>
-  );
-}
+const App = () => <RoutesComponent></RoutesComponent>;
 
 export default App;

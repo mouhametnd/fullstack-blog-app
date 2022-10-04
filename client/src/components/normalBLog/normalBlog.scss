@@ -7,11 +7,11 @@
   
 
   &__cont-title {
-    @apply flex flex-col gap-1 md:flex-row md:items-center justify-between max-w-[80%];
+    @apply flex flex-col gap-1 md:flex-row md:items-center justify-between ;
   }
 
   &__title {
-    @apply text-xl font-semibold text-cyanGreen-100 truncate w-full;
+    @apply text-xl font-semibold text-cyanGreen-100 truncate w-full max-w-[80%];
   }
 
   &__date {

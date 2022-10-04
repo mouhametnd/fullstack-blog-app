@@ -1,4 +1,4 @@
-import { IBaseAction, IBlog } from '../../../types/types';
+import { IBaseAction, IBlog } from '../../../types';
 
 export type TBlogsNames = 'allBlogs' | 'userBlogs';
 
@@ -16,7 +16,7 @@ export interface IBlogsSliceCaseReducers {
   increasePage(a: IBlogsSlice, b: IIncreasePageAction): IBlogsSlice;
   toggleBlogVote(a: IBlogsSlice, b: IToggleBlogVoteAction): IBlogsSlice;
   resetBlogsState(a: IBlogsSlice): IBlogsSlice;
-  updateBlog(a: IBlogsSlice, b: IUpdateBlogAction): IBlogsSlice;
+  editBlog(a: IBlogsSlice, b: IEditBlogAction): IBlogsSlice;
   addBlog(a: IBlogsSlice, b: IAddBlogAction): IBlogsSlice;
 }
 
@@ -36,7 +36,7 @@ export interface IToggleBlogVoteAction extends IBaseAction {
     userId: string;
   };
 }
-export interface IUpdateBlogAction extends IBaseAction {
+export interface IEditBlogAction extends IBaseAction {
   payload: {
     blogsName: TBlogsNames;
     blogId: string;

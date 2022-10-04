@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import ArrowIcon from '../others/ArrowIcon';
-import { ISelectOption, TCustomSelectProps } from './customSelectTypes';
+import { useState } from 'react';
+import ArrowIcon from '../icons/ArrowIcon';
 import './customSelect.scss';
-import CheckIcon from '../others/CheckIcon';
+import CheckIcon from '../icons/CheckIcon';
+import { ISelectOption, TCustomSelectProps } from '../../types';
 
 const CustomSelect = ({ selectOptions, optionClickHandler, title, defaultValue }: TCustomSelectProps) => {
   const [selectedOption, setSelectedOption] = useState<ISelectOption>(selectOptions[defaultValue || 0]!);
@@ -15,23 +15,22 @@ const CustomSelect = ({ selectOptions, optionClickHandler, title, defaultValue }
   };
 
   return (
-    // todo pass to  some to class
     <div className="relative" onClick={() => setShouldDisplayOptions(prev => !prev)}>
-      <span className="flex  gap-1  cursor-pointer text-gray-100">
-        {title}:<span className="font-semibold  text-cyanGreen-100">{selectedOption.title}</span>
-        <ArrowIcon className={shouldDisplayOptions ? 'rotate-180 stroke-cyanGreen-100' : 'stroke-cyanGreen-100'} />
+      <span className="span-title">
+        {title}:<span className="span-value">{selectedOption.title}</span>
+        <ArrowIcon className={`stroke-cyanGreen-100 ${shouldDisplayOptions && 'rotate-180'}`} />
       </span>
 
       <ul className={`cont-options ${shouldDisplayOptions && 'is-open'}`}>
         {selectOptions.map(option => {
           return (
             <li
-              className={`cont-options__option hover cursor-pointer flex gap-2 ${
-                selectedOption.value === option.value && 'cont-options__option--active'
-              }`}
               key={option.title + option.value}
               data-value={option.value}
               onClick={() => optionHandler(option)}
+              className={`cont-options__option hover  ${
+                selectedOption.value === option.value && 'cont-options__option--active'
+              }`}
             >
               <span>{option.title}</span>
               <CheckIcon />

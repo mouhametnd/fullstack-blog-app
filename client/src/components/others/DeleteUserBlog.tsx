@@ -1,8 +1,8 @@
 import axios from 'axios';
-import React, { useState } from 'react';
-import { API_BASE_URL } from '../../constants/globalConstants';
+import  { useState } from 'react';
+import { API_BASE_URL } from '../../constants';
 import useUser from '../../hooks/userUser';
-import { IBlog } from '../../types/types';
+import { IBlog } from '../../types';
 import TrashIcon from '../icons/TrashIcon';
 
 interface IProps {
@@ -11,8 +11,7 @@ interface IProps {
 
 const DeleteUserBlog = ({ blog }: IProps) => {
   const [showModal, setShowModal] = useState<boolean>(false);
-  const { user } = useUser();
-  const { userToken } = user;
+  const { userToken } = useUser();
   const { title, _id } = blog;
 
   const deleteBlog = () => {
@@ -38,10 +37,10 @@ const DeleteUserBlog = ({ blog }: IProps) => {
             </p>
 
             <div className="flex flex-row justify-evenly">
-              <button onClick={() => setShowModal(false)} className="button hover text-white bg-red-100">
+              <button onClick={() => setShowModal(false)} className="btn btn-cancel hover">
                 Cancel
               </button>
-              <button onClick={deleteBlog} className="button hover text-white bg-cyanGreen-100">
+              <button onClick={deleteBlog} className="btn btn-submit hover">
                 Delete
               </button>
             </div>

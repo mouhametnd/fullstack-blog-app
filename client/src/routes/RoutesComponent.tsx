@@ -1,6 +1,6 @@
 import {  Route, Routes } from 'react-router-dom';
-import LogIn from '../components/login/LogIn';
-import SignIn from '../components/signin/SignIn';
+import LogIn from '../components/auth/LogIn';
+import SignIn from '../components/auth/SignIn';
 import PrivateRoutes from './PrivateRoutes';
 
 const RoutesComponent = () => {

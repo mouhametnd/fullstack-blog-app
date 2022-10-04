@@ -2,7 +2,7 @@ import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { blogsSliceActions } from '../store/slices/blogs/blogsSlice';
 import { IBlogsSlice, TBlogsNames } from '../store/slices/blogs/blogsSliceTypes';
-import { IBlog, IStore, IUser } from '../types/types';
+import { IBlog, IStore, IUser } from '../types';
 
 const useBlogsStore = (blogsName: TBlogsNames) => {
   const dispatch = useDispatch();
@@ -12,13 +12,13 @@ const useBlogsStore = (blogsName: TBlogsNames) => {
 
   const appendBlogs = (blogs: IBlog[]) => dispatch(blogsSliceActions.appendBlogs({ blogsName, blogs }));
 
-  const increasePage = () => {
-    dispatch(blogsSliceActions.increasePage(blogsName));
-  };
-  const toggleBlogVote = ({ blogId, userId }: { blogId: IBlog['_id']; userId: IUser['_id'] }) =>
-    dispatch(blogsSliceActions.toggleBlogVote({ blogsName, blogId, userId }));
+  const increasePage = () => dispatch(blogsSliceActions.increasePage(blogsName));
 
-  return { setBlogs, appendBlogs, increasePage,toggleBlogVote, blogs, currentPage };
+  const toggleBlogVote = ({ blogId, userId }: { blogId: IBlog['_id']; userId: IUser['_id'] }) => {
+    return dispatch(blogsSliceActions.toggleBlogVote({ blogsName, blogId, userId }));
+  };
+
+  return { setBlogs, appendBlogs, increasePage, toggleBlogVote, blogs, currentPage };
 };
 
 export default useBlogsStore;
