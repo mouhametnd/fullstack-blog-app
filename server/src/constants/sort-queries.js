@@ -1,6 +1,6 @@
 const sortQueries = {
   random: {},
-  latest: { lastUpdate: 1 },
+  oldest: { lastUpdate: 1 },
   newest: { lastUpdate: -1 },
   mostVoted: { 'votes.total': -1 },
   lessVoted: { 'votes.total': 1 },

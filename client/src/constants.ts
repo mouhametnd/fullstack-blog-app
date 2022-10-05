@@ -74,12 +74,13 @@ export const baseFormValues = {
   },
 };
 
+// todo it msut be changed
 export const API_BASE_URL = 'http://localhost:3000/api';
 
 export const sortByOptions: ISelectOption[] = [
   { title: 'Random', value: 'random' },
   { title: 'Newest', value: 'newest' },
-  { title: 'Latest', value: 'latest' },
+  { title: 'Oldest', value: 'oldest' },
   { title: 'Most voted', value: 'mostVoted' },
   { title: 'Less voted', value: 'lessVoted' },
   { title: 'Title', value: 'title' },

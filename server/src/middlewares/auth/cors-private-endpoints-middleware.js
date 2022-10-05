@@ -1,8 +1,6 @@
-// todo this must be changed for the open endpoonts
-// todo url must ve env var
 const cors = require('cors');
 
-const CORSPrivateEndpointsMiddleware = cors({ origin: ['http://localhost:3300', 'http://192.168.0.142:3300'] });
+const CORSPrivateEndpointsMiddleware = cors({ origin: process.env.PRIVATE_ENDPOINT });
 
 module.exports = {
   CORSPrivateEndpointsMiddleware,

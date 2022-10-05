@@ -35,7 +35,7 @@ export type IStore = {
   blogs: IBlogsSlice;
 };
 
-export type TSortByValues = 'random' | 'newest' | 'latest' | 'mostVoted' | 'lessVoted' | 'title';
+export type TSortByValues = 'random' | 'newest' | 'oldest' | 'mostVoted' | 'lessVoted' | 'title';
 export type TPerPageValues = '5' | '10' | '15' | '20';
 
 export interface IBaseAction {
