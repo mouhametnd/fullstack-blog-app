@@ -26,7 +26,7 @@ const useBlogs = ({ blogsName, reqEndpoint, headers }: IUseBlogsProps) => {
       setError(false);
       if (actionName === 'setBlogs' && !data.result.length) setHasMoreBlogs(false);
     } catch (error) {
-      setError('error fetching blogs');
+      setError('No blogs found');
     }
   };
 
