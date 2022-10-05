@@ -25,7 +25,7 @@ const AllBlogs = () => {
           <NormalBlog blog={blog} userId={userId} key={blog._id} toggleBlogVote={voteBlogReq} />
         ))}
       </section>
-      {blogs.length !== 0 || <p className="blogs-error-msg"> No blogs found</p>}
+      {blogs.length !== 0 || <p className="blogs-error-msg"> No blog found</p>}
       {shouldDisplayButton && <LoadMoreButton handleClick={increasePage} />}
     </>
   );

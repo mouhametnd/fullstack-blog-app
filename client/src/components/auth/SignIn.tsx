@@ -1,12 +1,13 @@
 import { Link } from 'react-router-dom';
 import { baseInputProps, signInUseFormProps } from '../../constants';
 import useForm from '../../hooks/useForm';
-import { ChangeEvent, FormEvent } from 'react';
+import { ChangeEvent, FormEvent, useRef } from 'react';
 import Loader from '../loader/Loader';
-import  useAuthen  from '../../hooks/useAuthen';
+import useAuthen from '../../hooks/useAuthen';
 import generateGuestAccount from '../../utils/generateGuestAccount';
 
 const SignIn = () => {
+  const $formRef = useRef<HTMLFormElement>(null);
   const { authenticator } = useAuthen();
   const { isLoading, error, sendForm, setFormValue } = useForm(signInUseFormProps);
 
@@ -15,14 +16,15 @@ const SignIn = () => {
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     const { result } = await sendForm();
+
     if (result) {
       authenticator(result);
-      (e.target as HTMLFormElement).reset();
+      $formRef.current?.reset()
     }
   };
 
   const handleSubmitGuestAccount = (e: FormEvent) => {
-    const [name,username, passowrd] = generateGuestAccount();
+    const [name, username, passowrd] = generateGuestAccount();
     setFormValue(baseInputProps.name.name, name!);
     setFormValue(baseInputProps.username.name, username!);
     setFormValue(baseInputProps.password.name, passowrd!);
@@ -33,7 +35,7 @@ const SignIn = () => {
     <section className="form-wrapper">
       {isLoading && <Loader />}
 
-      <form className="form">
+      <form className="form" ref={$formRef}>
         <h1 className="form__title">Sign In</h1>
 
         {error.msg && <span className="form__error">{error.msg}</span>}
