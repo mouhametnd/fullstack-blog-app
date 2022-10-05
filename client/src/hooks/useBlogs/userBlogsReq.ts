@@ -25,7 +25,7 @@ const useBlogsReq = ({ blogsName, reqEndpoint, headers }: IUseBlogsProps) => {
       setBlogsErrorMsg(false);
       blogStore[methodName](data.result);
     } catch (err) {
-      setBlogsErrorMsg('error fetching blogs');
+      setBlogsErrorMsg('No blog found');
     }
   };
 
