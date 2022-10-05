@@ -74,7 +74,7 @@ export const baseFormValues = {
   },
 };
 
-export const API_BASE_URL = 'https://mouhametnd-blog-app.onrender.com/api';
+export const API_BASE_URL = 'https://mouhametnd-blog-app.up.railway.app/api';
 
 
 export const sortByOptions: ISelectOption[] = [
