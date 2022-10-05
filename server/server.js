@@ -7,7 +7,7 @@ const { logInRoute } = require('./src/routes/log-in-route');
 const { blogsRoute } = require('./src/routes/blogs');
 const { userRoute } = require('./src/routes/user-route');
 dotenv.config({
-  path: '.env',
+  path: './src/.env',
 });
 
 app.use(express.json());
