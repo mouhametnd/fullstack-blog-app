@@ -76,7 +76,6 @@ export const baseFormValues = {
 
 export const API_BASE_URL = 'https://mouhametnd-blog-app.up.railway.app/api';
 
-
 export const sortByOptions: ISelectOption[] = [
   { title: 'Random', value: 'random' },
   { title: 'Newest', value: 'newest' },

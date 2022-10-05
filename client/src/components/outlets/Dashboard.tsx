@@ -32,7 +32,7 @@ const Dashboard = () => {
           <CreateBlog />
         </article>
       </section>
-      <UserBlogs />
+      <UserBlogs  blogsName='dashboardBlogs'/>
     </>
   );
 };

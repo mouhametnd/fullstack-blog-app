@@ -15,7 +15,7 @@ const useFormArg: IUseFormProps = {
   headers: {},
 };
 
-const { addBlog, resetBlogsState } = blogsSliceActions;
+const { resetBlogsState } = blogsSliceActions;
 
 const CreateBlog = () => {
   const dispatch = useDispatch();
@@ -39,8 +39,6 @@ const CreateBlog = () => {
     e.preventDefault();
     const { result } = await sendForm();
     if (!result) return;
-    
-    dispatch(addBlog(result));
     dispatch(resetBlogsState())
     hideForm(e);
   };

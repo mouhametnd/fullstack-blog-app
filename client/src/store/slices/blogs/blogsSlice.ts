@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { addBlog, appendBlogs, increasePage, setBlogs, toggleBlogVote, editBlog } from './blogsSliceReducers';
+import { appendBlogs, increasePage, setBlogs, toggleBlogVote, editBlog } from './blogsSliceReducers';
 import { IBlogsSlice, IBlogsSliceCaseReducers } from './blogsSliceTypes';
 
 const initialState: IBlogsSlice = {
@@ -11,7 +11,13 @@ const initialState: IBlogsSlice = {
     blogs: null,
     currentPage: 1,
   },
+  dashboardBlogs: {
+    blogs: null,
+    currentPage: 1,
+  },
 };
+
+// the same component is appending?
 
 const blogsSlice = createSlice<IBlogsSlice, IBlogsSliceCaseReducers>({
   name: 'user',
@@ -22,7 +28,6 @@ const blogsSlice = createSlice<IBlogsSlice, IBlogsSliceCaseReducers>({
     increasePage,
     toggleBlogVote,
     editBlog,
-    addBlog,
     resetBlogsState() {
       return initialState;
     },

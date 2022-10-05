@@ -14,6 +14,7 @@ const useBlogs = ({ blogsName, reqEndpoint, headers }: IUseBlogsProps) => {
   const { searchParams } = useSearchParams();
   const { blogs, currentPage } = useSelector<IStore, IBlogsSlice['allBlogs']>(state => state.blogs[blogsName]);
 
+
   const fetchBlogs = async (actionName: 'setBlogs' | 'appendBlogs') => {
     try {
       const regConfig = {
@@ -35,6 +36,7 @@ const useBlogs = ({ blogsName, reqEndpoint, headers }: IUseBlogsProps) => {
   const increasePage = () => dispatch(blogsSliceActions.increasePage(blogsName));
 
   useEffect(() => {
+    console.log('ss')
     if (!blogs) setBlogs();
   }, [blogs]);
 

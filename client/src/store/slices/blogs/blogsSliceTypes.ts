@@ -1,6 +1,6 @@
 import { IBaseAction, IBlog } from '../../../types';
 
-export type TBlogsNames = 'allBlogs' | 'userBlogs';
+export type TBlogsNames = 'allBlogs' | 'userBlogs' | 'dashboardBlogs';
 
 export type IBlogsSlice = {
   [Key in TBlogsNames]: {
@@ -17,7 +17,6 @@ export interface IBlogsSliceCaseReducers {
   toggleBlogVote(a: IBlogsSlice, b: IToggleBlogVoteAction): IBlogsSlice;
   resetBlogsState(a: IBlogsSlice): IBlogsSlice;
   editBlog(a: IBlogsSlice, b: IEditBlogAction): IBlogsSlice;
-  addBlog(a: IBlogsSlice, b: IAddBlogAction): IBlogsSlice;
 }
 
 export interface ISetBlogsAction extends IBaseAction {
@@ -43,7 +42,4 @@ export interface IEditBlogAction extends IBaseAction {
     newTitle: string;
     newDescription: string;
   };
-}
-export interface IAddBlogAction extends IBaseAction {
-  payload: IBlog;
 }

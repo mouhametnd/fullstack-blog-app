@@ -4,9 +4,10 @@ import useSearchParams from '../useSearchParams';
 import useBlogsStore from '../useBlogsStore';
 import useUser from '../userUser';
 import { API_BASE_URL } from '../../constants';
-import { IBlog, IUseBlogsProps} from '../../types';
+import { IBlog, IUseBlogsProps } from '../../types';
 
 const useBlogsReq = ({ blogsName, reqEndpoint, headers }: IUseBlogsProps) => {
+  let isMounted = false;
   const { searchParams } = useSearchParams();
   const [blogsErrorMsg, setBlogsErrorMsg] = useState<string | false>();
   const [hasMoreBlogs, setHasMoreBlogs] = useState(true);
@@ -14,7 +15,7 @@ const useBlogsReq = ({ blogsName, reqEndpoint, headers }: IUseBlogsProps) => {
   const { userToken, _id } = useUser();
   const { blogs, currentPage, increasePage, toggleBlogVote } = blogStore;
 
-  const doBlogsReq = async (methodName: 'setBlogs' | 'appendBlogs') => {
+  const fetchBlogs = async (methodName: 'setBlogs' | 'appendBlogs') => {
     try {
       const regConfig = {
         headers,
@@ -42,13 +43,17 @@ const useBlogsReq = ({ blogsName, reqEndpoint, headers }: IUseBlogsProps) => {
 
   useEffect(() => {
     if (!blogs) {
-      doBlogsReq('setBlogs');
+      fetchBlogs('setBlogs');
       setHasMoreBlogs(true);
     }
   }, [blogs]);
 
   useEffect(() => {
-    if (blogs) doBlogsReq('appendBlogs');
+    if (!isMounted && blogs) {
+      isMounted = true;
+      return;
+    }
+    if (blogs) fetchBlogs('appendBlogs');
   }, [currentPage]);
 
   return { blogsErrorMsg, hasMoreBlogs, blogs, increasePage, voteBlogReq };

@@ -56,15 +56,4 @@ export const editBlog: IBlogsSliceCaseReducers['editBlog'] = (state, { payload }
   return { ...state, [blogsName]: { ...state[blogsName], blogs } };
 };
 
-export const addBlog: IBlogsSliceCaseReducers['addBlog'] = (state, { payload }) => {
-  const allBlogs = state['allBlogs'];
-  const userBlogs = state['userBlogs'];
-  const allBlogsUpdated = [...allBlogs.blogs!, payload];
-  const userBlogsUpdated = [...userBlogs.blogs!, payload];
 
-  return {
-    ...state,
-    allBlogs: { ...allBlogs, blogs: allBlogsUpdated },
-    userBlogs: { ...userBlogs, blogs: userBlogsUpdated },
-  };
-};
