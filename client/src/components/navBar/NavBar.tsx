@@ -12,8 +12,8 @@ const NavBar = ({ handleLinkClick }: Iprops) => {
 
   return (
     <nav className="navbar">
-      {pageLinks.map(({ title, link }) => (
-        <NavLink onClick={handleLinkClick} className={highlither} children={title} to={`/${link}`} />
+      {pageLinks.map(({ title, link }, i) => (
+        <NavLink key={i} onClick={handleLinkClick} className={highlither} children={title} to={`/${link}`} />
       ))}
     </nav>
   );
