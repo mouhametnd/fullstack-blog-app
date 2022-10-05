@@ -2,7 +2,7 @@ const { sortQueries } = require('../constants/sort-queries');
 
 const getSortedBy = query => {
   let sortedQuery = sortQueries[query];
-  sortedQuery ??= {};
+  if (!sortedQuery) sortedQuery = {};
   return sortedQuery;
 };
 
