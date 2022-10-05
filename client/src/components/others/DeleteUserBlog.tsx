@@ -1,7 +1,9 @@
 import axios from 'axios';
-import  { useState } from 'react';
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { API_BASE_URL } from '../../constants';
 import useUser from '../../hooks/userUser';
+import { blogsSliceActions } from '../../store/slices/blogs/blogsSlice';
 import { IBlog } from '../../types';
 import TrashIcon from '../icons/TrashIcon';
 
@@ -9,7 +11,10 @@ interface IProps {
   blog: IBlog;
 }
 
+const { resetBlogsState } = blogsSliceActions;
+
 const DeleteUserBlog = ({ blog }: IProps) => {
+  const dispatch = useDispatch();
   const [showModal, setShowModal] = useState<boolean>(false);
   const { userToken } = useUser();
   const { title, _id } = blog;
@@ -17,6 +22,7 @@ const DeleteUserBlog = ({ blog }: IProps) => {
   const deleteBlog = () => {
     axios.delete(`${API_BASE_URL}/blogs/delete/${_id}`, { headers: { Authorization: userToken } });
     setShowModal(false);
+    dispatch(resetBlogsState());
   };
 
   return (
