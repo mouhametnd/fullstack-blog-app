@@ -19,8 +19,8 @@ const DeleteUserBlog = ({ blog }: IProps) => {
   const { userToken } = useUser();
   const { title, _id } = blog;
 
-  const deleteBlog = () => {
-    axios.delete(`${API_BASE_URL}/blogs/delete/${_id}`, { headers: { Authorization: userToken } });
+  const deleteBlog =async () => {
+    await axios.delete(`${API_BASE_URL}/blogs/delete/${_id}`, { headers: { Authorization: userToken } });
     setShowModal(false);
     dispatch(resetBlogsState());
   };
