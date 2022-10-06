@@ -10,11 +10,12 @@ This is a complete full-stack project focused on the `backend` that includes a c
   - [Database](#database)
   - [Security](#security)
   - [JSON Schema Validator](#json-schema-validator)
-    - [Links](#links)
-    - [The challenge](#the-challenge)
-  - [Technologies used](#technologies-used)
-    - [Frontend Technologies](#frontend-technologies)
-    - [Backend Technologies](#backend-technologies)
+  - [Links](#links)
+  - [The challenge](#the-challenge)
+    - [Users should be able to:](#users-should-be-able-to)
+    - [Technologies used](#technologies-used)
+      - [Frontend Technologies](#frontend-technologies)
+      - [Backend Technologies](#backend-technologies)
     - [Preview](#preview)
 
 ## API
@@ -27,38 +28,35 @@ I used `MongoDB` as a `database` to store the user's account and blogs, as well 
 
 ## Security
 
-This blog app includes `authentication` and `authorization` using `JWT (JSON Web Token)` to authenticate and authorize the user for some endpoints and functionalities. As well I used a library called `bcryp` to hash the password of the users before storing them in the `database`.
+This blog app includes `authentication` and `authorization` using `JWT (JSON Web Token)` to authenticate and authorize the user for some endpoints and functionalities. As well I used a library called `bcrypt` to hash the password of the users before storing them in the `database`.
 
 ## JSON Schema Validator
 
 I used a library called `jose` that used `AJV (JSON Schema validator)` under the hood to validate the JSON object that we receive from the clients, before manipulating with them.
 
-### Links
+## Links
 
 - Live Project [Blog app](https://mouhametnd-blog-app.netlify.app/)
-- My Email ahmetndiaye404@gmail.com
 - Portfolio [Mouhamet Ndiaye](https://mouhametnd.com/)
-- My Linkedin [Linkedin](https://www.linkedin.com/in/mouhametndiaye/)
+- Email ahmetndiaye404@gmail.com
+- Linkedin [Linkedin](https://www.linkedin.com/in/mouhametndiaye/)
+## The challenge
 
-
-### The challenge
-
-Users should be able to:
+### Users should be able to:
 
 - Sign up to create an account
 - Log in to use a created account
 - generate a `guest` account
 - Update the user credits such as `name` and `username`
 - Create, read, delete and update the user's blogs
-- See other users's blogs
-- Ability to upvote and downvote any blog 
+- Ability to see and interact with other users blogs, such as upvote and downvote any blog
 - See a `responsive design` on any device screen
 - Sort blogs by `newest`, `oldest`, `most voted`, `less voted` and `randomly`
 - Set the blogs per page for example `5`, `10`, `15` etc.
 
-## Technologies used
+### Technologies used
 
-### Frontend Technologies 
+#### Frontend Technologies 
 - React
 - Typescript
 - Redux - Toolkit
@@ -67,7 +65,7 @@ Users should be able to:
 - CSS and SCSS
 - Mobile-first workflow
 
-### Backend Technologies
+#### Backend Technologies
 - Node 
 - Express.JS
 - MongoDB (Database)
