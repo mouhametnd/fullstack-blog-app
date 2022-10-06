@@ -27,7 +27,7 @@ const UserBlogs = ({ blogsName }: IProps) => {
     <>
       <section className="blogs-wrapper">
         {blogs.map(blog => (
-          <UserBlog blog={blog} userId={userId} key={blog._id} toggleBlogVote={voteBlogReq} />
+          <UserBlog blog={blog} userId={userId} key={blog._id} toggleBlogVote={voteBlogReq} blogsName={blogsName || 'userBlogs'} />
         ))}
       </section>
       {blogs.length || <p className="blogs-error-msg"> No blog found</p>}

@@ -4,20 +4,22 @@ import dateFormater from '../../utils/dateParser';
 import DeleteUserBlog from './DeleteUserBlog';
 import UpvoteButton from './UpvoteButton';
 import EditBlogForm from '../forms/EditBlogForm';
+import { TBlogsNames } from '../../store/slices/blogs/blogsSliceTypes';
 
 interface IProps {
   blog: IBlog;
   userId: IUser['_id'];
+  blogsName: TBlogsNames;
   toggleBlogVote: (...a: any) => unknown;
 }
 
-const UserBlog = ({ blog, toggleBlogVote, userId }: IProps) => {
+const UserBlog = ({ blog, toggleBlogVote, userId, blogsName }: IProps) => {
   const { _id, description, lastUpdate, title, userCreator, votes } = blog;
   const hasUserVoted = votes.likedUsers.includes(userId);
 
   return (
     <article className="blog custom-shadow relative">
-      <EditBlogForm blog={blog} reqEndpoint={`${API_BASE_URL}/blogs/update/${_id}`} />
+      <EditBlogForm blog={blog} reqEndpoint={`${API_BASE_URL}/blogs/update/${_id}`}  blogsName={blogsName}/>
 
       <DeleteUserBlog blog={blog} />
       <div className="blog__cont-title md:flex-col md:items-start ">

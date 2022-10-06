@@ -8,10 +8,12 @@ import { blogsSliceActions } from '../../store/slices/blogs/blogsSlice';
 import { IBlog, IUseFormProps } from '../../types';
 import Loader from '../loader/Loader';
 import PenIcon from '../icons/PenIcon';
+import { TBlogsNames } from '../../store/slices/blogs/blogsSliceTypes';
 
 interface IProps {
   blog: IBlog;
   reqEndpoint: string;
+  blogsName: TBlogsNames;
 }
 const { description, title } = baseFormValues;
 const useFormArg: IUseFormProps = {
@@ -22,7 +24,7 @@ const useFormArg: IUseFormProps = {
 };
 const { editBlog } = blogsSliceActions;
 
-const EditBlogForm = ({ blog, reqEndpoint }: IProps) => {
+const EditBlogForm = ({ blog, reqEndpoint, blogsName }: IProps) => {
   const dispatch = useDispatch();
   const { title, description } = blog;
   const { userToken } = useUser();
@@ -41,10 +43,10 @@ const EditBlogForm = ({ blog, reqEndpoint }: IProps) => {
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     const { result } = await sendForm();
+    console.log(result);
     if (!result) return;
-
     const { title, description } = getFormValues();
-    dispatch(editBlog({ blogId: blog._id, blogsName: 'userBlogs', newDescription: description!, newTitle: title! }));
+    dispatch(editBlog({ blogId: blog._id, blogsName, newDescription: description!, newTitle: title! }));
     hideForm(e);
   };
 
