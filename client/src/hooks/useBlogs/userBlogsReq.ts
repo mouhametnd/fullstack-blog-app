@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import useSearchParams from '../useSearchParams';
 import useBlogsStore from '../useBlogsStore';
 import useUser from '../userUser';
@@ -7,7 +7,7 @@ import { API_BASE_URL } from '../../constants';
 import { IBlog, IUseBlogsProps } from '../../types';
 
 const useBlogsReq = ({ blogsName, reqEndpoint, headers }: IUseBlogsProps) => {
-  let isMounted = false;
+  const isMounted = useRef(false);
   const { searchParams } = useSearchParams();
   const [blogsErrorMsg, setBlogsErrorMsg] = useState<string | false>();
   const [hasMoreBlogs, setHasMoreBlogs] = useState(true);
@@ -49,13 +49,9 @@ const useBlogsReq = ({ blogsName, reqEndpoint, headers }: IUseBlogsProps) => {
   }, [blogs]);
 
   useEffect(() => {
-    if (!isMounted && blogs) {
-      isMounted = true;
-      return;
-    }
-    if (blogs) fetchBlogs('appendBlogs');
+    if (isMounted.current && blogs) fetchBlogs('appendBlogs');
+    if (!isMounted.current) isMounted.current = true;
   }, [currentPage]);
-
   return { blogsErrorMsg, hasMoreBlogs, blogs, increasePage, voteBlogReq };
 };
 
