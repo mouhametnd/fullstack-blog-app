@@ -20,7 +20,7 @@ This is a complete full-stack project focused on the `backend` that includes a c
 
 ## API
 
-The `API` of the project is built with `node` and `Expres.js` as a framework. This `API` has some `public` and `private` endpoints. One of the `public` endpoints is [https://mouhametnd-blog-app.onrender.com/api/blogs](https://mouhametnd-blog-app.onrender.com/api/blogs) and one of the `private` endpoints is [https://mouhametnd-blog-app.onrender.com/api/user/blogs](https://mouhametnd-blog-app.onrender.com/api/user/blogs).
+The `API` of the project is built with `node` and `Expres.js` as a framework. This `API` has some `public` and `private` endpoints. One of the `public` endpoints is [https://mouhametnd-blog-app.up.railway.app/api/blogs](https://mouhametnd-blog-app.up.railway.app/api/blogs) and one of the `private` endpoints is [https://mouhametnd-blog-app.up.railway.app/api/user/blogs](https://mouhametnd-blog-app.up.railway.app/api/user/blogs).
 
 ## Database
 
